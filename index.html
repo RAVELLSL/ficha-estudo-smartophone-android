@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ficha de Estudo Completa: Como Operar um Smartphone Android</title>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap");
+
+    :root {
+      --bg: #f5efe3;
+      --surface: #fffdf8;
+      --surface-soft: #fff8ef;
+      --ink: #231a13;
+      --muted: #6f6052;
+      --line: #e7d8c5;
+      --accent: #8f4d1f;
+      --accent-2: #0f645b;
+      --blue-soft: #eef4ff;
+      --green-soft: #e9f6ef;
+      --amber-soft: #fff2db;
+      --red-soft: #fff1ee;
+      --violet-soft: #f4efff;
+      --shadow: 0 14px 34px rgba(44, 29, 16, 0.12);
+      --radius: 16px;
+      --topbar-h: 70px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      line-height: 1.62;
+      background: radial-gradient(circle at 0% 0%, rgba(143, 77, 31, 0.12), transparent 28%),
+                  radial-gradient(circle at 100% 0%, rgba(15, 100, 91, 0.1), transparent 24%),
+                  var(--bg);
+      overflow: hidden;
+    }
+
+    a { color: var(--accent); }
+    h1, h2, h3, h4 { color: #302116; line-height: 1.18; }
+    h1, h2 { font-family: "Merriweather", Georgia, serif; }
+    h1 { font-size: clamp(2rem, 4vw, 4rem); margin: 10px 0 16px; }
+    h2 { font-size: clamp(1.45rem, 2.3vw, 2.2rem); margin: 0 0 12px; }
+    h3 { font-size: 1.18rem; margin: 20px 0 8px; }
+    h4 { margin: 0 0 6px; }
+    p { margin: 0 0 12px; }
+
+    .topbar {
+      height: var(--topbar-h);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 253, 248, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1360px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      font-family: "Merriweather", Georgia, serif;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.01em;
+      font-size: 1.04rem;
+      white-space: nowrap;
+    }
+
+    .nav { display: none; gap: 8px; overflow-x: auto; }
+    .nav a {
+      text-decoration: none;
+      color: #2f3a44;
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .book-app {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 14px 18px 18px;
+      height: calc(100dvh - var(--topbar-h));
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .sidebar {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      overflow: auto;
+    }
+    .sidebar h2 {
+      font-family: "Merriweather", serif;
+      font-size: 1.02rem;
+      margin: 0 0 8px;
+      color: #302116;
+    }
+    .sidebar p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .sidebar-nav { display: grid; gap: 8px; }
+    .sidebar-nav a {
+      text-decoration: none;
+      color: #2f2a24;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      border-color: rgba(143, 77, 31, 0.35);
+      color: var(--accent);
+      transform: translateX(2px);
+      background: #fff;
+    }
+
+    .viewer {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+    }
+    .viewer-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: linear-gradient(110deg, #2c1d12, #4a2f1b);
+      color: #f9ebd4;
+      border: 1px solid rgba(255, 238, 210, 0.24);
+      border-radius: 999px;
+      padding: 8px 10px;
+      box-shadow: 0 10px 22px rgba(31, 19, 10, 0.28);
+    }
+    .viewer-status {
+      font-weight: 600;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+    .viewer-preference {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #f9ebd4;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+    .viewer-preference select {
+      appearance: none;
+      border: 1px solid rgba(255, 238, 210, 0.36);
+      background: rgba(255, 255, 255, 0.1);
+      color: #f9ebd4;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .viewer-toolbar button {
+      appearance: none;
+      border: 1px solid rgba(255, 238, 210, 0.36);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f9ebd4;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+    .viewer-toolbar button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .viewer-stage {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255, 252, 246, 0.6);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .book { position: relative; width: 100%; height: 100%; }
+    .page {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 0;
+      overflow: hidden;
+      transition: opacity 0.28s ease;
+    }
+    .page.active { opacity: 1; visibility: visible; pointer-events: auto; }
+    .page-content {
+      width: 100%;
+      padding: clamp(18px, 2.2vw, 34px);
+      transform-origin: top left;
+      will-change: transform;
+    }
+    .viewer-stage.mode-reading .page.active { overflow: auto; }
+    .viewer-stage.mode-reading .page.active::-webkit-scrollbar { width: 10px; }
+    .viewer-stage.mode-reading .page.active::-webkit-scrollbar-thumb { background: rgba(143, 77, 31, 0.42); border-radius: 999px; }
+    .viewer-stage.mode-reading .page.active::-webkit-scrollbar-track { background: rgba(242, 229, 210, 0.55); border-radius: 999px; }
+    .viewer-stage.mode-fit .page.active { overflow: hidden; }
+    .page-content.tight-mode { font-size: 0.94em; }
+    .scale-note {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      background: rgba(35, 26, 19, 0.72);
+      color: #fff;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 0.74rem;
+      z-index: 20;
+      display: none;
+    }
+    .viewer-stage.is-scaled .scale-note { display: inline-flex; }
+
+    .badge, .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(143, 77, 31, 0.24);
+      background: var(--surface-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin: 2px 6px 8px 0;
+    }
+    .lead { font-size: 1.06rem; color: #44382d; }
+    .muted { color: var(--muted); }
+    .cover-study {
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      gap: 24px;
+      align-items: start;
+      min-height: 100%;
+      background: radial-gradient(circle at 86% 14%, rgba(15, 100, 91, 0.08), transparent 30%),
+                  radial-gradient(circle at 20% 0%, rgba(143, 77, 31, 0.09), transparent 30%),
+                  var(--surface);
+    }
+    .phoneHero {
+      background: #e4eef9;
+      border-radius: 28px;
+      padding: 12px 8px 20px;
+      box-shadow: 0 18px 28px -8px rgba(0,0,0,0.2);
+    }
+    .phoneScreen {
+      background: #fef7e8;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+    }
+    .status { display: flex; justify-content: space-between; padding: 8px 12px; font-size: 0.7rem; background: #fef7e8; }
+    .searchbar { background: #fff; margin: 6px 12px; padding: 8px 12px; border-radius: 30px; color: #8b7a68; border: 1px solid #ecdcc9; font-size: 0.8rem; }
+    .appGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; padding: 12px; text-align: center; font-size: 0.7rem; }
+    .appIcon { width: 44px; height: 44px; background: #fff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.55rem; margin: 0 auto 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); border: 1px solid var(--line); }
+    .dock { display: flex; justify-content: space-between; padding: 8px 12px; background: rgba(255,255,240,0.9); border-top: 1px solid var(--line); }
+    .dock .appIcon { width: 48px; height: 48px; }
+
+    .meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 18px; }
+    .metaCard { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px; flex: 1; min-width: 155px; }
+    .grid2, .grid3, .grid4 { display: grid; gap: 16px; margin: 16px 0; }
+    .grid2 { grid-template-columns: repeat(2, 1fr); }
+    .grid3 { grid-template-columns: repeat(3, 1fr); }
+    .grid4 { grid-template-columns: repeat(4, 1fr); }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+    .card.soft { background: #fcf8f0; }
+    .card.blue { background: var(--blue-soft); }
+    .card.green { background: var(--green-soft); }
+    .card.amber { background: var(--amber-soft); }
+    .card.red { background: var(--red-soft); }
+    .card.violet { background: var(--violet-soft); }
+    .step { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+    .num { width: 28px; height: 28px; background: var(--accent); color: white; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .callout { background: var(--blue-soft); border-left: 6px solid var(--accent); padding: 12px 16px; border-radius: 14px; margin: 16px 0; }
+    .callout.warn { background: var(--amber-soft); border-left-color: #b46f1a; }
+    .callout.danger { background: var(--red-soft); border-left-color: #b33a1c; }
+    .callout.ok { background: var(--green-soft); border-left-color: var(--accent-2); }
+    .callout.violet { background: var(--violet-soft); border-left-color: #6f43b5; }
+    .gesture { background: #fef6ea; border-radius: 20px; padding: 12px; text-align: center; border: 1px solid var(--line); }
+    .finger, .arrow { font-size: 2rem; }
+    .chip { background: #eee6db; padding: 2px 8px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin: 2px 0; }
+    .tableWrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: #fff; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; min-width: 320px; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #f9f3ea; }
+    tr:last-child td { border-bottom: 0; }
+    .checklist { list-style: none; padding-left: 0; margin: 10px 0; }
+    .checklist li { padding-left: 28px; position: relative; margin-bottom: 7px; }
+    .checklist li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; background: var(--green-soft); border-radius: 30px; text-align: center; color: var(--accent-2); font-weight: 800; line-height: 20px; }
+    .toc { background: #fef7ea; border-radius: 20px; padding: 14px 18px; }
+    .toc ol { columns: 2; column-gap: 28px; }
+    .toc li { break-inside: avoid; margin-bottom: 4px; }
+    .glossary { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 12px; }
+    .term { background: #fcf8f0; border-radius: 14px; padding: 10px; border: 1px solid var(--line); }
+    .exercise { background: #f9f3ea; border-radius: 14px; padding: 12px; margin: 12px 0; border: 1px solid var(--line); }
+    .answer-line { border-bottom: 1px dashed #bca88f; min-height: 24px; margin: 6px 0 10px; }
+    .note-area { min-height: 96px; border: 1px dashed #c8b49d; background: #fffdfa; border-radius: 14px; padding: 10px; color: var(--muted); }
+    .study-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+    .study-strip div { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; }
+    .miniPhone { background:#ccc8c0; border-radius:24px; padding:10px 6px; max-width:280px; margin:0 auto; }
+    .miniScreen { background:#fef7e8; border-radius:20px; overflow:hidden; border:1px solid rgba(0,0,0,0.06); }
+    .miniStatus { display:flex; justify-content:space-between; padding:6px 8px; background:#e2d9ce; font-size:0.78rem; }
+    .miniContent { padding:10px; text-align:center; }
+    .footer { text-align: center; margin: 30px 0 10px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); }
+
+
+
+    /* ========== SVGs didáticos adicionados ========== */
+    .study-illustration {
+      margin: 18px 0;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,248,239,0.88));
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(44, 29, 16, 0.07);
+      break-inside: avoid;
+    }
+    .study-illustration h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      font-family: "Source Sans 3", "Segoe UI", sans-serif;
+      color: var(--accent);
+    }
+    .study-illustration p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+    .study-illustration svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      background: #fffdf8;
+    }
+    .svg-text { font-family: "Source Sans 3", "Segoe UI", sans-serif; fill: #302116; font-weight: 700; }
+    .svg-small { font-family: "Source Sans 3", "Segoe UI", sans-serif; fill: #6f6052; font-size: 12px; font-weight: 600; }
+    .svg-label { font-family: "Source Sans 3", "Segoe UI", sans-serif; fill: #302116; font-size: 13px; font-weight: 700; }
+    .svg-muted { fill: #6f6052; }
+    .svg-accent { fill: var(--accent); }
+    .svg-accent-stroke { stroke: var(--accent); }
+    .svg-green { fill: var(--accent-2); }
+    .svg-card-fill { fill: #fff8ef; stroke: #e7d8c5; }
+    .svg-blue-fill { fill: #eef4ff; stroke: #cddaf4; }
+    .svg-green-fill { fill: #e9f6ef; stroke: #b9d9c8; }
+    .svg-amber-fill { fill: #fff2db; stroke: #ead0a0; }
+    .svg-red-fill { fill: #fff1ee; stroke: #e4b8ae; }
+    .svg-violet-fill { fill: #f4efff; stroke: #d7c8f2; }
+    .svg-line { stroke: #8f4d1f; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .svg-thin { stroke: #6f6052; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .svg-arrow { marker-end: url(#arrowTip); }
+    @media (max-width: 620px) {
+      .study-illustration { padding: 10px; }
+      .svg-label { font-size: 12px; }
+      .svg-small { font-size: 11px; }
+    }
+
+    @media (max-width: 1080px) {
+      body { overflow: auto; }
+      .nav { display: flex; }
+      .book-app { height: auto; grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .viewer-stage { min-height: 75vh; }
+      .page { position: relative; inset: auto; opacity: 1; visibility: visible; pointer-events: auto; margin-bottom: 16px; }
+      .page-content { transform: none !important; width: auto !important; }
+      .viewer-toolbar, .viewer-preference, .scale-note { display: none; }
+      .cover-study, .grid2, .grid3, .grid4, .study-strip { grid-template-columns: 1fr; }
+      .toc ol { columns: 1; }
+    }
+
+    @media (max-width: 620px) {
+      .topbar-inner { padding: 0 12px; }
+      .brand { font-size: 0.96rem; }
+      .book-app { padding: 10px; }
+      .page-content { padding: 18px; }
+      h1 { font-size: 2rem; }
+      table { min-width: 520px; }
+    }
+
+    @media print {
+      body { overflow: visible; background: #fff; }
+      .topbar, .sidebar, .viewer-toolbar, .scale-note { display: none; }
+      .book-app, .viewer, .viewer-stage, .book { display: block; height: auto; overflow: visible; padding: 0; box-shadow: none; border: 0; }
+      .page { position: static; opacity: 1; visibility: visible; page-break-after: always; border: none; overflow: visible; }
+      .page-content { transform: none !important; width: auto !important; }
+      .card, .callout, .exercise, .tableWrap { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<div class="brand">📱 Ficha de Estudo Android</div>
+<nav aria-label="Navegação rápida" class="nav">
+<a href="#capa">Capa</a><a href="#roteiro">Roteiro</a><a href="#mapa">Mapa</a><a href="#cap1">Android</a><a href="#cap8">Comunicação</a><a href="#cap14">Segurança</a><a href="#avaliacao">Autoavaliação</a>
+</nav>
+</div>
+</header>
+<main class="book-app">
+<aside class="sidebar">
+<h2>📘 Conteúdo da ficha</h2>
+<p>Use como material de revisão, roteiro de aula, atividade prática ou avaliação diagnóstica.</p>
+<nav class="sidebar-nav" id="sidebarNav">
+<a href="#capa">🟠 Capa / Identificação</a>
+<a href="#roteiro">🧭 Roteiro de uso da ficha</a>
+<a href="#mapa">🧠 Mapa geral de estudo</a>
+<a href="#cap1">1. Conceito de smartphone e Android</a>
+<a href="#cap2">2. Partes físicas do aparelho</a>
+<a href="#cap3">3. Energia, bateria e reinicialização</a>
+<a href="#cap4">4. Tela touch e gestos</a>
+<a href="#cap5">5. Tela inicial, apps e widgets</a>
+<a href="#cap6">6. Navegação do sistema</a>
+<a href="#cap7">7. Notificações e atalhos rápidos</a>
+<a href="#cap8">8. Chamadas, contatos e mensagens</a>
+<a href="#cap9">9. Internet, Wi‑Fi e dados móveis</a>
+<a href="#cap10">10. Instalação e remoção de apps</a>
+<a href="#cap11">11. Câmera, fotos e vídeos</a>
+<a href="#cap12">12. Arquivos e armazenamento</a>
+<a href="#cap13">13. Conta Google, backup e sincronização</a>
+<a href="#cap14">14. Segurança e privacidade</a>
+<a href="#cap15">15. Acessibilidade e recursos úteis</a>
+<a href="#cap16">16. Manutenção e problemas comuns</a>
+<a href="#pratica">17. Laboratório prático orientado</a>
+<a href="#avaliacao">✅ Autoavaliação e revisão</a>
+<a href="#glossario">📖 Glossário essencial</a>
+<a href="#fontes">🔗 Referências</a>
+</nav>
+</aside>
+<section class="viewer">
+<div class="viewer-toolbar">
+<button id="prevPage" type="button">◀ Anterior</button>
+<div class="viewer-status" id="viewerStatus"></div>
+<label class="viewer-preference" for="scalePreference">Exibição:
+          <select id="scalePreference"><option selected="" value="reading">Modo leitura</option><option value="fit">Modo reduzido</option></select>
+</label>
+<button id="nextPage" type="button">Próximo ▶</button>
+</div>
+<div class="viewer-stage" id="viewerStage">
+<div class="scale-note" id="scaleNote">Ajuste automático</div>
+<div class="book" id="bookPages">
+<section class="page" id="capa">
+<div class="page-content">
+<div class="cover-study">
+<div>
+<span class="badge">📱 Ficha de estudo ampla e detalhada</span>
+<h1>Como Operar um Smartphone Android</h1>
+<p class="lead">Material de estudo organizado para alunos iniciantes que precisam compreender, revisar e praticar o uso básico de celulares Android em situações reais do cotidiano.</p><div class="callout ok visual-note"><strong>Atualização visual:</strong> esta versão inclui diagramas SVG didáticos em cada unidade para apoiar explicações, demonstrações em sala e estudo individual.</div>
+<p>Esta ficha foi adaptada para funcionar como instrumento didático: cada unidade apresenta objetivos, conceitos essenciais, procedimentos guiados, pontos de atenção, atividades práticas e espaço para registro de dúvidas.</p>
+<div class="meta">
+<div class="metaCard"><strong>Aluno(a)</strong><div class="answer-line"></div></div>
+<div class="metaCard"><strong>Turma / Data</strong><div class="answer-line"></div></div>
+<div class="metaCard"><strong>Dispositivo usado</strong><div class="answer-line"></div></div>
+</div>
+<div class="study-strip">
+<div><strong>🎯 Competência central</strong><br/>Usar o smartphone com autonomia e segurança.</div>
+<div><strong>🧩 Nível</strong><br/>Iniciante, alfabetização digital e reforço.</div>
+<div><strong>🛠 Método</strong><br/>Leitura curta, demonstração e prática.</div>
+<div><strong>✅ Resultado esperado</strong><br/>Executar tarefas básicas sem depender de terceiros.</div>
+</div>
+</div>
+<div class="phoneHero">
+<div class="phoneScreen">
+<div class="status"><span>08:30</span><span>Wi‑Fi 4G 🔋</span></div>
+<div class="searchbar">Pesquisar no telefone</div>
+<div class="appGrid">
+<div><div class="appIcon">☎</div>Telefone</div><div><div class="appIcon">✉</div>Mensagens</div>
+<div><div class="appIcon">🌐</div>Internet</div><div><div class="appIcon">📷</div>Câmera</div>
+<div><div class="appIcon">⚙</div>Ajustes</div><div><div class="appIcon">🖼</div>Fotos</div>
+<div><div class="appIcon">🗺</div>Mapas</div><div><div class="appIcon">▶</div>Vídeos</div>
+</div>
+<div class="dock"><div class="appIcon">☎</div><div class="appIcon">💬</div><div class="appIcon">🌐</div><div class="appIcon">📷</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="page" id="roteiro"><div class="page-content">
+<span class="badge">🧭 Organização do estudo</span>
+<h2>Roteiro de uso da ficha</h2>
+<p class="lead">Esta ficha não deve ser usada apenas como leitura. O melhor aproveitamento ocorre quando o aluno lê, observa o próprio celular, executa uma ação e registra o que aprendeu.</p><div class="study-illustration">
+<h3>Ciclo recomendado de estudo</h3>
+<p>A aprendizagem melhora quando o aluno alterna leitura, observação do aparelho, prática e registro da dificuldade encontrada.</p>
+<svg aria-label="Ciclo de estudo: ler, observar, praticar, registrar e revisar" role="img" viewbox="0 0 760 250">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<circle class="svg-green-fill" cx="380" cy="125" r="58"></circle>
+<text class="svg-text" font-size="20" text-anchor="middle" x="380" y="118">Aprender</text>
+<text class="svg-small" text-anchor="middle" x="380" y="142">com ação real</text>
+<g>
+<rect class="svg-blue-fill" height="70" rx="18" width="130" x="40" y="40"></rect><text class="svg-label" text-anchor="middle" x="105" y="72">1. Ler</text><text class="svg-small" text-anchor="middle" x="105" y="92">conceito</text>
+<rect class="svg-card-fill" height="70" rx="18" width="130" x="235" y="12"></rect><text class="svg-label" text-anchor="middle" x="300" y="44">2. Observar</text><text class="svg-small" text-anchor="middle" x="300" y="64">no celular</text>
+<rect class="svg-amber-fill" height="70" rx="18" width="130" x="455" y="12"></rect><text class="svg-label" text-anchor="middle" x="520" y="44">3. Praticar</text><text class="svg-small" text-anchor="middle" x="520" y="64">passo a passo</text>
+<rect class="svg-violet-fill" height="70" rx="18" width="130" x="590" y="140"></rect><text class="svg-label" text-anchor="middle" x="655" y="172">4. Registrar</text><text class="svg-small" text-anchor="middle" x="655" y="192">dúvidas</text>
+<rect class="svg-green-fill" height="70" rx="18" width="130" x="235" y="168"></rect><text class="svg-label" text-anchor="middle" x="300" y="200">5. Revisar</text><text class="svg-small" text-anchor="middle" x="300" y="220">até dominar</text>
+</g>
+<path class="svg-line svg-arrow" d="M170 75 C200 48 213 44 235 47"></path>
+<path class="svg-line svg-arrow" d="M365 47 C400 30 420 30 455 47"></path>
+<path class="svg-line svg-arrow" d="M570 82 C635 95 658 112 655 140"></path>
+<path class="svg-line svg-arrow" d="M590 185 C500 215 430 218 365 205"></path>
+<path class="svg-line svg-arrow" d="M235 200 C150 180 90 145 92 110"></path>
+</svg>
+</div>
+<div class="grid2">
+<div class="card green"><h3>Como estudar cada unidade</h3><ul class="checklist"><li>Leia o objetivo da unidade antes de iniciar.</li><li>Observe o recurso diretamente no seu smartphone.</li><li>Execute o procedimento indicado passo a passo.</li><li>Marque os itens que conseguiu realizar.</li><li>Anote dúvidas, diferenças de menu e dificuldades encontradas.</li></ul></div>
+<div class="card amber"><h3>Como o professor pode aplicar</h3><ul class="checklist"><li>Comece com uma demonstração projetada ou feita em aparelho real.</li><li>Peça que os alunos repitam a tarefa em seus aparelhos.</li><li>Compare diferenças entre Samsung, Motorola, Xiaomi e outras marcas.</li><li>Use os exercícios como avaliação prática.</li><li>Retome a seção de segurança sempre que houver uso de links, senhas ou mensagens.</li></ul></div>
+</div>
+<div class="callout"><strong>Estratégia recomendada:</strong> para alunos com pouca experiência, trabalhe no máximo três unidades por encontro. O objetivo é consolidar a autonomia, não apenas “passar conteúdo”.</div>
+<h3>Escala de domínio</h3>
+<div class="tableWrap"><table><thead><tr><th>Nível</th><th>Descrição</th><th>Indicador prático</th></tr></thead><tbody><tr><td>1 — Preciso de ajuda</td><td>O aluno reconhece o recurso, mas ainda não executa sozinho.</td><td>Necessita de orientação verbal ou demonstração.</td></tr><tr><td>2 — Faço com consulta</td><td>O aluno consegue executar olhando a ficha.</td><td>Segue os passos com pouca intervenção.</td></tr><tr><td>3 — Faço sozinho</td><td>O aluno executa com autonomia e entende a finalidade.</td><td>Repete a ação em outro contexto.</td></tr><tr><td>4 — Explico para alguém</td><td>O aluno domina o recurso e consegue ensinar outra pessoa.</td><td>Explica o processo usando suas próprias palavras.</td></tr></tbody></table></div>
+</div></section>
+<section class="page" id="mapa"><div class="page-content">
+<span class="badge">🧠 Visão geral</span>
+<h2>Mapa geral de estudo do smartphone Android</h2>
+<p class="lead">O smartphone deve ser entendido como um conjunto de camadas: aparelho físico, sistema Android, aplicativos, internet, contas, arquivos e segurança.</p><div class="study-illustration">
+<h3>Camadas do funcionamento do smartphone</h3>
+<p>O aluno deve perceber que o aparelho físico, o Android, os aplicativos, a internet e a segurança atuam juntos.</p>
+<svg aria-label="Camadas do smartphone: hardware, Android, aplicativos, internet, conta e segurança" role="img" viewbox="0 0 760 280">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-card-fill" height="44" rx="14" width="600" x="80" y="205"></rect><text class="svg-label" text-anchor="middle" x="380" y="233">Aparelho físico: tela, bateria, chip, câmera, botões</text>
+<rect class="svg-blue-fill" height="44" rx="14" width="520" x="120" y="158"></rect><text class="svg-label" text-anchor="middle" x="380" y="186">Sistema Android: menus, notificações, permissões, arquivos</text>
+<rect class="svg-green-fill" height="44" rx="14" width="440" x="160" y="111"></rect><text class="svg-label" text-anchor="middle" x="380" y="139">Aplicativos: telefone, câmera, mensagens, banco, mapas</text>
+<rect class="svg-amber-fill" height="44" rx="14" width="360" x="200" y="64"></rect><text class="svg-label" text-anchor="middle" x="380" y="92">Internet: Wi‑Fi, dados móveis, Bluetooth e nuvem</text>
+<rect class="svg-violet-fill" height="44" rx="14" width="280" x="240" y="17"></rect><text class="svg-label" text-anchor="middle" x="380" y="45">Conta e segurança dos dados</text>
+<path class="svg-line" d="M380 205 L380 61" stroke-dasharray="7 8"></path>
+<text class="svg-small" x="48" y="226">base</text><text class="svg-small" x="575" y="43">proteção</text>
+</svg>
+</div>
+<div class="grid3">
+<div class="card blue"><h3>1. Corpo do aparelho</h3><p>Botões, tela, câmeras, entrada de carregamento, chip, alto-falante, microfone e sensores.</p></div>
+<div class="card green"><h3>2. Sistema Android</h3><p>Organiza a interface, configurações, permissões, notificações, aplicativos e arquivos.</p></div>
+<div class="card amber"><h3>3. Aplicativos</h3><p>Programas que executam tarefas: telefone, mensagens, câmera, mapas, banco, transporte, redes sociais e estudos.</p></div>
+<div class="card violet"><h3>4. Conectividade</h3><p>Wi‑Fi, dados móveis, Bluetooth, localização, modo avião e compartilhamento de internet.</p></div>
+<div class="card red"><h3>5. Dados pessoais</h3><p>Contatos, fotos, senhas, conversas, documentos, histórico, localização e contas conectadas.</p></div>
+<div class="card soft"><h3>6. Segurança</h3><p>Bloqueio de tela, backup, atualização, permissões, verificação em duas etapas e prevenção de golpes.</p></div>
+</div>
+<div class="exercise"><strong>Atividade de abertura:</strong> observe seu próprio celular e escreva três coisas que você já sabe fazer e três coisas que ainda precisa aprender.</div>
+<div class="grid2"><div><strong>Já sei fazer:</strong><div class="note-area"></div></div><div><strong>Preciso aprender:</strong><div class="note-area"></div></div></div>
+</div></section>
+<section class="page" id="cap1"><div class="page-content">
+<span class="badge">Unidade 1</span>
+<h2>Conceito de smartphone e Android</h2>
+<p class="lead">Um smartphone é um computador de bolso com funções de comunicação, câmera, internet, localização, aplicativos e armazenamento. O Android é o sistema operacional que permite que tudo isso funcione de modo organizado.</p><div class="study-illustration">
+<h3>Diferença entre aparelho, sistema e aplicativo</h3>
+<p>Esse esquema evita a confusão comum entre o celular físico, o Android e os apps instalados.</p>
+<svg aria-label="Esquema mostrando usuário, smartphone, Android e aplicativos" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<g transform="translate(60,55)"><circle class="svg-amber-fill" cx="45" cy="35" r="24"></circle><path class="svg-thin" d="M16 120 C20 80 70 80 74 120"></path><text class="svg-label" text-anchor="middle" x="45" y="160">Usuário</text></g>
+<path class="svg-line svg-arrow" d="M150 145 L260 145"></path>
+<g transform="translate(275,30)">
+<rect fill="#302116" height="230" rx="28" width="150" x="0" y="0"></rect><rect fill="#fffdf8" height="194" rx="18" width="126" x="12" y="18"></rect>
+<rect class="svg-green-fill" height="42" rx="12" width="94" x="28" y="44"></rect><text class="svg-label" text-anchor="middle" x="75" y="70">Android</text>
+<rect class="svg-blue-fill" height="42" rx="12" width="42" x="28" y="98"></rect><rect class="svg-amber-fill" height="42" rx="12" width="42" x="80" y="98"></rect>
+<rect class="svg-violet-fill" height="42" rx="12" width="42" x="28" y="150"></rect><rect class="svg-red-fill" height="42" rx="12" width="42" x="80" y="150"></rect>
+<text class="svg-label" text-anchor="middle" x="75" y="250">Aparelho físico</text>
+</g>
+<path class="svg-line svg-arrow" d="M440 145 L540 145"></path>
+<g transform="translate(555,52)">
+<rect class="svg-blue-fill" height="45" rx="12" width="145" x="0" y="0"></rect><text class="svg-label" text-anchor="middle" x="72" y="28">Telefone</text>
+<rect class="svg-green-fill" height="45" rx="12" width="145" x="0" y="60"></rect><text class="svg-label" text-anchor="middle" x="72" y="88">Câmera</text>
+<rect class="svg-amber-fill" height="45" rx="12" width="145" x="0" y="120"></rect><text class="svg-label" text-anchor="middle" x="72" y="148">Mensagens</text>
+<rect class="svg-violet-fill" height="45" rx="12" width="145" x="0" y="180"></rect><text class="svg-label" text-anchor="middle" x="72" y="208">Apps</text>
+</g>
+</svg>
+</div>
+<div class="grid2">
+<div class="card"><h3>Objetivos de aprendizagem</h3><ul class="checklist"><li>Explicar o que é um smartphone.</li><li>Diferenciar aparelho físico, sistema Android e aplicativos.</li><li>Identificar por que celulares Android podem ter aparência diferente entre marcas.</li><li>Reconhecer funções básicas do smartphone no cotidiano.</li></ul></div>
+<div class="card blue"><h3>Conceitos-chave</h3><p><span class="chip">Smartphone</span> telefone inteligente com recursos de computador.</p><p><span class="chip">Android</span> sistema operacional criado pelo Google e usado em diversas marcas.</p><p><span class="chip">App</span> programa instalado para realizar uma tarefa.</p><p><span class="chip">Interface</span> telas, menus, botões e ícones usados para controlar o aparelho.</p></div>
+</div>
+<h3>Resumo explicativo</h3>
+<p>O Android cumpre papel semelhante ao Windows em um computador: ele controla a tela, o som, a internet, os arquivos, a câmera, a instalação de aplicativos e as permissões de acesso. Sem o sistema operacional, o aparelho físico não teria uma forma prática de ser usado.</p>
+<p>Como o Android é usado por muitas fabricantes, a aparência pode variar. Um Samsung pode exibir menus com nomes diferentes de um Motorola ou Xiaomi. Mesmo assim, os princípios permanecem parecidos: tocar para abrir, deslizar para navegar, usar a Play Store para baixar aplicativos, acessar configurações pelo ícone de engrenagem e verificar notificações deslizando a tela de cima para baixo.</p>
+<div class="callout ok"><strong>Ideia para memorizar:</strong> aparelho é o corpo; Android é o sistema; aplicativos são as ferramentas.</div>
+<div class="exercise"><strong>Fixação:</strong> escreva com suas palavras a diferença entre Android e aplicativo.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="cap2"><div class="page-content">
+<span class="badge">Unidade 2</span>
+<h2>Partes físicas do aparelho</h2>
+<p class="lead">Conhecer as partes externas do smartphone evita erros de manuseio, facilita a solução de problemas e ajuda o aluno a entender onde cada função acontece.</p>
+<div class="study-illustration">
+<h3>Anatomia visual do smartphone</h3>
+<p>Agora a figura está numerada. Observe cada número no desenho e localize o mesmo número na tabela explicativa logo abaixo.</p>
+<svg aria-label="Anatomia numerada de um smartphone, com frente e traseira, para correlacionar as partes físicas com a tabela" role="img" viewBox="0 0 760 420">
+<defs>
+  <linearGradient id="bodyGradCap2" x1="0" x2="1">
+    <stop offset="0%" stop-color="#30353b"></stop>
+    <stop offset="55%" stop-color="#14181c"></stop>
+    <stop offset="100%" stop-color="#2d3238"></stop>
+  </linearGradient>
+  <linearGradient id="screenGradCap2" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0%" stop-color="#fdf3d9"></stop>
+    <stop offset="55%" stop-color="#f7e1b8"></stop>
+    <stop offset="100%" stop-color="#f1d3a3"></stop>
+  </linearGradient>
+  <linearGradient id="backGradCap2" x1="0" x2="1">
+    <stop offset="0%" stop-color="#d8dde4"></stop>
+    <stop offset="50%" stop-color="#eef2f7"></stop>
+    <stop offset="100%" stop-color="#c9d0d8"></stop>
+  </linearGradient>
+  <filter id="shadowCap2" x="-20%" y="-20%" width="140%" height="160%">
+    <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.20"></feDropShadow>
+  </filter>
+  <marker id="arrowTipCap2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+    <path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path>
+  </marker>
+</defs>
+
+<g filter="url(#shadowCap2)" transform="translate(405,72)">
+  <rect x="0" y="0" width="150" height="268" rx="28" fill="url(#backGradCap2)" stroke="#b5bcc5"></rect>
+  <rect x="16" y="20" width="64" height="82" rx="18" fill="#b8c0c9" stroke="#9ba4af"></rect>
+  <circle cx="34" cy="40" r="10" fill="#1b2025"></circle>
+  <circle cx="62" cy="40" r="10" fill="#1b2025"></circle>
+  <circle cx="34" cy="68" r="10" fill="#1b2025"></circle>
+  <circle cx="62" cy="68" r="10" fill="#1b2025"></circle>
+  <circle cx="48" cy="54" r="4" fill="#e7f4ff"></circle>
+  <circle cx="104" cy="54" r="7" fill="#f4f6f8" stroke="#c7ced7"></circle>
+  <text class="svg-small" x="75" y="240" text-anchor="middle">Vista traseira</text>
+</g>
+
+<g filter="url(#shadowCap2)" transform="translate(210,38)">
+  <rect x="0" y="0" width="168" height="324" rx="30" fill="url(#bodyGradCap2)"></rect>
+  <rect x="12" y="16" width="144" height="292" rx="24" fill="url(#screenGradCap2)" stroke="#e7d8c5"></rect>
+  <rect x="60" y="9" width="48" height="5" rx="3" fill="#555b62"></rect>
+  <circle cx="84" cy="32" r="6" fill="#1a1f24"></circle>
+  <circle cx="84" cy="32" r="2" fill="#8092a8"></circle>
+  <rect x="145" y="95" width="6" height="58" rx="3" fill="#4d5560"></rect>
+  <rect x="145" y="165" width="6" height="34" rx="3" fill="#4d5560"></rect>
+  <rect x="18" y="108" width="5" height="34" rx="3" fill="#59616b"></rect>
+  <rect x="30" y="56" width="108" height="26" rx="13" fill="rgba(255,255,255,0.35)"></rect>
+  <text class="svg-small" x="84" y="73" text-anchor="middle">Pesquisar no telefone</text>
+  <rect x="28" y="98" width="112" height="76" rx="18" fill="rgba(255,255,255,0.30)" stroke="#edd6b1"></rect>
+  <text class="svg-label" x="84" y="139" text-anchor="middle">Tela touch</text>
+  <text class="svg-small" x="84" y="158" text-anchor="middle">toque, digitação e navegação</text>
+  <g fill="#fff8ef" stroke="#d9c4a2">
+    <rect x="31" y="191" width="28" height="28" rx="8"></rect>
+    <rect x="70" y="191" width="28" height="28" rx="8"></rect>
+    <rect x="109" y="191" width="28" height="28" rx="8"></rect>
+    <rect x="31" y="230" width="28" height="28" rx="8"></rect>
+    <rect x="70" y="230" width="28" height="28" rx="8"></rect>
+    <rect x="109" y="230" width="28" height="28" rx="8"></rect>
+  </g>
+  <rect x="44" y="274" width="80" height="12" rx="6" fill="rgba(255,255,255,0.45)"></rect>
+  <rect x="66" y="309" width="36" height="4" rx="2" fill="#7a828c"></rect>
+  <rect x="68" y="319" width="32" height="5" rx="2.5" fill="#1e2328"></rect>
+  <circle cx="42" cy="322" r="2.8" fill="#1e2328"></circle>
+  <circle cx="50" cy="322" r="2.8" fill="#1e2328"></circle>
+  <circle cx="118" cy="322" r="2.8" fill="#1e2328"></circle>
+  <circle cx="126" cy="322" r="2.8" fill="#1e2328"></circle>
+  <text class="svg-small" x="84" y="346" text-anchor="middle">Vista frontal</text>
+</g>
+
+<line x1="292" y1="168" x2="118" y2="122" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="92" cy="122" r="16" fill="#8f4d1f"></circle>
+<text x="92" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1</text>
+<rect x="114" y="98" width="155" height="50" rx="14" class="svg-amber-fill"></rect>
+<text class="svg-label" x="192" y="121" text-anchor="middle">Tela touch</text>
+<text class="svg-small" x="192" y="139" text-anchor="middle">onde você toca e digita</text>
+
+<line x1="362" y1="145" x2="626" y2="88" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="648" cy="88" r="16" fill="#8f4d1f"></circle>
+<text x="648" y="94" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2</text>
+<rect x="518" y="62" width="122" height="50" rx="14" class="svg-red-fill"></rect>
+<text class="svg-label" x="579" y="85" text-anchor="middle">Liga/desliga</text>
+<text class="svg-small" x="579" y="103" text-anchor="middle">bloquear e reiniciar</text>
+
+<line x1="355" y1="197" x2="622" y2="152" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="644" cy="152" r="16" fill="#8f4d1f"></circle>
+<text x="644" y="158" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3</text>
+<rect x="530" y="126" width="104" height="50" rx="14" class="svg-green-fill"></rect>
+<text class="svg-label" x="582" y="149" text-anchor="middle">Volume</text>
+<text class="svg-small" x="582" y="167" text-anchor="middle">aumentar / diminuir</text>
+
+<line x1="294" y1="360" x2="120" y2="343" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="92" cy="343" r="16" fill="#8f4d1f"></circle>
+<text x="92" y="349" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">4</text>
+<rect x="116" y="318" width="144" height="50" rx="14" class="svg-card-fill"></rect>
+<text class="svg-label" x="188" y="341" text-anchor="middle">Entrada USB‑C</text>
+<text class="svg-small" x="188" y="359" text-anchor="middle">carregamento e dados</text>
+
+<line x1="442" y1="124" x2="631" y2="243" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="653" cy="243" r="16" fill="#8f4d1f"></circle>
+<text x="653" y="249" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">5</text>
+<rect x="535" y="217" width="108" height="50" rx="14" class="svg-blue-fill"></rect>
+<text class="svg-label" x="589" y="240" text-anchor="middle">Câmeras</text>
+<text class="svg-small" x="589" y="258" text-anchor="middle">frontal e traseiras</text>
+
+<line x1="294" y1="360" x2="306" y2="394" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="328" cy="394" r="16" fill="#8f4d1f"></circle>
+<text x="328" y="400" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">6</text>
+<rect x="350" y="369" width="176" height="38" rx="14" class="svg-green-fill"></rect>
+<text class="svg-label" x="438" y="392" text-anchor="middle">Microfone e alto-falante</text>
+
+<line x1="210" y1="160" x2="124" y2="235" class="svg-line" marker-end="url(#arrowTipCap2)"></line>
+<circle cx="96" cy="235" r="16" fill="#8f4d1f"></circle>
+<text x="96" y="241" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">7</text>
+<rect x="120" y="210" width="138" height="50" rx="14" class="svg-violet-fill"></rect>
+<text class="svg-label" x="189" y="233" text-anchor="middle">Gaveta do chip</text>
+<text class="svg-small" x="189" y="251" text-anchor="middle">SIM e cartão de memória*</text>
+</svg>
+</div>
+<div class="grid2">
+<div class="card blue">
+<h3>Como usar a figura numerada</h3>
+<ul class="checklist">
+<li>Observe o número na imagem.</li>
+<li>Procure o mesmo número na primeira coluna da tabela.</li>
+<li>Leia a função da peça e depois confira no seu aparelho real.</li>
+<li>Se o modelo do celular for diferente, a posição pode mudar um pouco, mas a função continua parecida.</li>
+</ul>
+<p><strong>Exemplo:</strong> o número <strong>4</strong> aponta para a <strong>entrada USB‑C</strong>, usada para carregar o aparelho e, em muitos casos, transferir dados.</p>
+</div>
+<div class="card"><h3>Objetivos de aprendizagem</h3><ul class="checklist"><li>Localizar botão liga/desliga, volume, tela, câmeras e entrada de carregamento.</li><li>Distinguir chip/SIM, cartão de memória e armazenamento interno.</li><li>Reconhecer cuidados físicos básicos para evitar danos.</li><li>Relacionar cada parte externa com uma função prática.</li></ul></div>
+</div>
+<div class="tableWrap"><table><thead><tr><th>Nº</th><th>Parte</th><th>Função</th><th>Cuidado essencial</th></tr></thead><tbody>
+<tr><td><strong>1</strong></td><td>Tela touch</td><td>Área principal de toque, digitação e navegação.</td><td>Evite quedas, pressão forte e contato com objetos pontiagudos.</td></tr>
+<tr><td><strong>2</strong></td><td>Botão liga/desliga</td><td>Bloqueia a tela, liga, desliga e reinicia o aparelho.</td><td>Não force. Pressione de forma firme e curta ou mantenha pressionado quando necessário.</td></tr>
+<tr><td><strong>3</strong></td><td>Botões de volume</td><td>Controlam som de chamadas, vídeos, músicas e alarmes.</td><td>Use também para silenciar rapidamente em ambientes públicos.</td></tr>
+<tr><td><strong>4</strong></td><td>Entrada USB‑C</td><td>Carrega a bateria e pode transferir dados.</td><td>Evite umidade, poeira e cabos danificados.</td></tr>
+<tr><td><strong>5</strong></td><td>Câmeras</td><td>Fotografam, filmam, fazem videochamadas e leem QR Code.</td><td>Limpe a lente com pano macio; não use objetos abrasivos.</td></tr>
+<tr><td><strong>6</strong></td><td>Microfone e alto-falante</td><td>Captam voz e reproduzem som.</td><td>Evite sujeira, areia, umidade e obstrução das grades.</td></tr>
+<tr><td><strong>7</strong></td><td>Gaveta do chip</td><td>Recebe chip da operadora e, em alguns aparelhos, cartão de memória.</td><td>Abra com ferramenta adequada; não use força.</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>Dica didática:</strong> alguns celulares mudam a posição do botão de volume, da gaveta do chip e do conjunto de câmeras. Mesmo assim, a correlação entre <strong>parte, função e cuidado</strong> continua válida.</div>
+<div class="exercise"><strong>Atividade prática:</strong> identifique no seu aparelho cada item numerado da tabela. Marque quais você encontrou sozinho e quais precisou de ajuda para localizar.</div>
+</div></section>
+<section class="page" id="cap3"><div class="page-content">
+<span class="badge">Unidade 3</span>
+<h2>Energia, bateria, carregamento e reinicialização</h2>
+<p class="lead">Dominar as ações de ligar, bloquear, desligar, reiniciar e carregar o aparelho é a base para usar o smartphone com independência.</p><div class="study-illustration">
+<h3>Rotina segura de energia e bateria</h3>
+<p>A ideia central é distinguir bloquear a tela, desligar, reiniciar e carregar corretamente.</p>
+<svg aria-label="Fluxo de energia do celular: ligar, bloquear, usar, carregar e reiniciar" role="img" viewbox="0 0 760 260">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-green-fill" height="82" rx="18" width="120" x="36" y="78"></rect><text class="svg-label" text-anchor="middle" x="96" y="112">Ligar</text><text class="svg-small" text-anchor="middle" x="96" y="134">3 a 5 s</text>
+<rect class="svg-blue-fill" height="82" rx="18" width="120" x="205" y="78"></rect><text class="svg-label" text-anchor="middle" x="265" y="112">Usar</text><text class="svg-small" text-anchor="middle" x="265" y="134">apps e tela</text>
+<rect class="svg-amber-fill" height="82" rx="18" width="120" x="374" y="78"></rect><text class="svg-label" text-anchor="middle" x="434" y="112">Bloquear</text><text class="svg-small" text-anchor="middle" x="434" y="134">1 toque</text>
+<rect class="svg-violet-fill" height="82" rx="18" width="120" x="543" y="78"></rect><text class="svg-label" text-anchor="middle" x="603" y="112">Carregar</text><text class="svg-small" text-anchor="middle" x="603" y="134">20% a 80%</text>
+<path class="svg-line svg-arrow" d="M156 119 H205"></path><path class="svg-line svg-arrow" d="M325 119 H374"></path><path class="svg-line svg-arrow" d="M494 119 H543"></path>
+<path class="svg-line svg-arrow" d="M603 160 C580 220 150 220 96 160"></path>
+<rect class="svg-red-fill" height="36" rx="18" width="152" x="304" y="20"></rect><text class="svg-label" text-anchor="middle" x="380" y="43">Reiniciar se travar</text>
+<path class="svg-line svg-arrow" d="M380 56 V78"></path>
+<g transform="translate(660,30)"><rect fill="#302116" height="86" rx="8" width="46" x="0" y="0"></rect><rect fill="#e9f6ef" height="58" rx="5" width="30" x="8" y="8"></rect><rect fill="#0f645b" height="8" rx="2" width="18" x="14" y="52"></rect></g>
+</svg>
+</div>
+<div class="grid3"><div class="card green"><h3>Ligar</h3><p>Segure o botão liga/desliga por alguns segundos até aparecer a marca do aparelho. Depois aguarde a tela de bloqueio.</p></div><div class="card amber"><h3>Bloquear</h3><p>Pressione uma vez o botão liga/desliga. O celular continua ligado, mas a tela apaga e fica protegida.</p></div><div class="card red"><h3>Desligar ou reiniciar</h3><p>Mantenha o botão liga/desliga pressionado até abrir o menu de energia. Em alguns modelos, use liga/desliga + volume.</p></div></div>
+<h3>Procedimento: ligar e desbloquear</h3><div class="step"><div class="num">1</div><div>Segure o botão liga/desliga por 3 a 5 segundos.</div></div><div class="step"><div class="num">2</div><div>Espere a logo da marca e a inicialização do sistema.</div></div><div class="step"><div class="num">3</div><div>Na tela de bloqueio, use PIN, senha, padrão, digital ou reconhecimento facial.</div></div>
+<h3>Boas práticas com bateria</h3><ul class="checklist"><li>Use carregador original ou certificado e cabo em bom estado.</li><li>Evite deixar o celular aquecer muito durante o carregamento.</li><li>Não é necessário esperar chegar a 0% para carregar.</li><li>Manter a bateria entre aproximadamente 20% e 80% ajuda na conservação.</li><li>Ative proteção da bateria ou carregamento adaptável quando disponível.</li><li>Reduza brilho, localização, Bluetooth e aplicativos em segundo plano para economizar energia.</li></ul>
+<div class="callout warn"><strong>Quando reiniciar?</strong> Reinicie quando o aparelho estiver lento, sem internet, travando, sem som, com aplicativo fechando sozinho ou após uma atualização importante.</div>
+<div class="exercise"><strong>Fixação:</strong> explique a diferença entre bloquear a tela, desligar o aparelho e reiniciar o sistema.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="cap4"><div class="page-content">
+<span class="badge">Unidade 4</span>
+<h2>Tela touch e gestos básicos</h2>
+<p class="lead">A tela sensível ao toque é o principal meio de comunicação entre o usuário e o Android. A maior dificuldade dos iniciantes geralmente está em diferenciar toque rápido, toque longo, arrasto e gesto de borda.</p><div class="study-illustration">
+<h3>Gestos básicos comparados</h3>
+<p>A visualização ajuda o aluno a perceber que cada movimento tem intenção, duração e resultado diferentes.</p>
+<svg aria-label="Comparação dos gestos básicos na tela touch" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<g transform="translate(34,40)"><rect fill="#302116" height="160" rx="22" width="115"></rect><rect fill="#fffdf8" height="124" rx="14" width="95" x="10" y="18"></rect><circle class="svg-blue-fill" cx="58" cy="76" r="18"></circle><path class="svg-line" d="M58 100 V130"></path><text class="svg-label" text-anchor="middle" x="58" y="188">Tocar</text></g>
+<g transform="translate(184,40)"><rect fill="#302116" height="160" rx="22" width="115"></rect><rect fill="#fffdf8" height="124" rx="14" width="95" x="10" y="18"></rect><circle class="svg-amber-fill" cx="58" cy="76" r="22"></circle><circle cx="58" cy="76" fill="none" r="32" stroke="#b46f1a" stroke-dasharray="4 5"></circle><text class="svg-label" text-anchor="middle" x="58" y="188">Segurar</text></g>
+<g transform="translate(334,40)"><rect fill="#302116" height="160" rx="22" width="115"></rect><rect fill="#fffdf8" height="124" rx="14" width="95" x="10" y="18"></rect><path class="svg-line svg-arrow" d="M30 78 H84"></path><circle class="svg-green" cx="30" cy="78" r="8"></circle><text class="svg-label" text-anchor="middle" x="58" y="188">Deslizar</text></g>
+<g transform="translate(484,40)"><rect fill="#302116" height="160" rx="22" width="115"></rect><rect fill="#fffdf8" height="124" rx="14" width="95" x="10" y="18"></rect><path class="svg-line svg-arrow" d="M33 56 L53 76"></path><path class="svg-line svg-arrow" d="M83 106 L63 86"></path><text class="svg-label" text-anchor="middle" x="58" y="188">Pinça</text></g>
+<g transform="translate(634,40)"><rect fill="#302116" height="160" rx="22" width="92"></rect><rect fill="#fffdf8" height="124" rx="14" width="74" x="9" y="18"></rect><path class="svg-line svg-arrow" d="M15 78 H58"></path><text class="svg-label" text-anchor="middle" x="46" y="188">Borda</text></g>
+<text class="svg-small" text-anchor="middle" x="380" y="260">Dica: toque rápido abre; toque longo mostra opções; gesto de borda geralmente volta.</text>
+</svg>
+</div>
+<div class="grid3"><div class="gesture"><div class="finger">👆</div><strong>Tocar</strong><p>Abrir app, selecionar botão, marcar opção, digitar letra.</p></div><div class="gesture"><div class="finger">⏸️</div><strong>Tocar e segurar</strong><p>Reorganizar ícones, abrir menu de opções, copiar e colar.</p></div><div class="gesture"><div class="arrow">⬆️⬇️</div><strong>Rolar</strong><p>Ver mais conteúdo em listas, páginas, conversas e redes sociais.</p></div><div class="gesture"><div class="arrow">⬅️➡️</div><strong>Deslizar</strong><p>Trocar telas, abrir notificações, voltar em alguns apps.</p></div><div class="gesture"><div class="arrow">🤏</div><strong>Pinça</strong><p>Aumentar ou diminuir zoom em foto, mapa e página da internet.</p></div><div class="gesture"><div class="arrow">🔄</div><strong>Arrastar e soltar</strong><p>Mover ícone, reorganizar aplicativos e posicionar widgets.</p></div></div>
+<div class="callout"><strong>Treino recomendado:</strong> abra a Galeria ou Fotos, escolha uma imagem e pratique tocar, ampliar com dois dedos, reduzir, deslizar para a próxima foto e voltar.</div>
+<div class="tableWrap"><table><thead><tr><th>Erro comum</th><th>O que acontece</th><th>Como corrigir</th></tr></thead><tbody><tr><td>Pressionar com força</td><td>A tela não responde melhor; pode até dificultar o toque.</td><td>Use toque leve e direto.</td></tr><tr><td>Segurar tempo demais</td><td>Abre menus indesejados.</td><td>Para abrir, toque rápido. Para opções, toque longo.</td></tr><tr><td>Arrastar de forma curta</td><td>A página não rola ou volta para o lugar.</td><td>Faça um movimento mais contínuo.</td></tr><tr><td>Tocar com a mão molhada</td><td>A tela pode falhar ou tocar em pontos errados.</td><td>Seque mãos e tela antes de usar.</td></tr></tbody></table></div>
+</div></section>
+<section class="page" id="cap5"><div class="page-content">
+<span class="badge">Unidade 5</span>
+<h2>Tela inicial, aplicativos e widgets</h2>
+<p class="lead">A tela inicial é a área de partida do celular. Nela ficam atalhos de aplicativos, barra de pesquisa, relógio, widgets e a barra inferior com apps mais usados.</p><div class="study-illustration">
+<h3>Mapa da tela inicial</h3>
+<p>Mostre no celular real onde ficam barra de status, busca, ícones, widgets, gaveta de apps e dock.</p>
+<svg aria-label="Mapa visual da tela inicial do Android" role="img" viewbox="0 0 760 360">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect fill="#302116" height="300" rx="30" width="164" x="298" y="24"></rect><rect fill="#fffdf8" height="244" rx="20" width="136" x="312" y="50"></rect>
+<rect class="svg-blue-fill" height="22" rx="11" width="116" x="322" y="61"></rect><text class="svg-small" text-anchor="middle" x="380" y="76">Status</text>
+<rect class="svg-card-fill" height="34" rx="17" width="116" x="322" y="96"></rect><text class="svg-small" text-anchor="middle" x="380" y="118">Busca</text>
+<rect class="svg-amber-fill" height="42" rx="12" width="116" x="322" y="144"></rect><text class="svg-small" text-anchor="middle" x="380" y="169">Widget</text>
+<g fill="#eef4ff" stroke="#cddaf4"><rect height="25" rx="7" width="25" x="326" y="204"></rect><rect height="25" rx="7" width="25" x="363" y="204"></rect><rect height="25" rx="7" width="25" x="400" y="204"></rect><rect height="25" rx="7" width="25" x="326" y="239"></rect><rect height="25" rx="7" width="25" x="363" y="239"></rect><rect height="25" rx="7" width="25" x="400" y="239"></rect></g>
+<rect class="svg-green-fill" height="16" rx="8" width="120" x="320" y="274"></rect><text class="svg-small" text-anchor="middle" x="380" y="286">Dock</text>
+<line class="svg-line svg-arrow" x1="322" x2="130" y1="72" y2="70"></line><rect class="svg-blue-fill" height="50" rx="12" width="120" x="30" y="45"></rect><text class="svg-label" text-anchor="middle" x="90" y="75">Barra de status</text>
+<line class="svg-line svg-arrow" x1="438" x2="630" y1="112" y2="100"></line><rect class="svg-card-fill" height="56" rx="12" width="122" x="610" y="72"></rect><text class="svg-label" text-anchor="middle" x="671" y="97">Busca</text><text class="svg-small" text-anchor="middle" x="671" y="116">no aparelho/web</text>
+<line class="svg-line svg-arrow" x1="322" x2="132" y1="165" y2="188"></line><rect class="svg-amber-fill" height="56" rx="12" width="118" x="34" y="160"></rect><text class="svg-label" text-anchor="middle" x="93" y="184">Widget</text><text class="svg-small" text-anchor="middle" x="93" y="204">informação rápida</text>
+<line class="svg-line svg-arrow" x1="425" x2="610" y1="222" y2="220"></line><rect class="svg-violet-fill" height="56" rx="12" width="122" x="610" y="192"></rect><text class="svg-label" text-anchor="middle" x="671" y="216">Ícones</text><text class="svg-small" text-anchor="middle" x="671" y="236">abrir apps</text>
+<line class="svg-line svg-arrow" x1="440" x2="620" y1="282" y2="300"></line><rect class="svg-green-fill" height="50" rx="12" width="122" x="610" y="278"></rect><text class="svg-label" text-anchor="middle" x="671" y="308">Dock fixo</text>
+</svg>
+</div>
+<div class="grid2"><div class="card blue"><h3>Elementos da tela inicial</h3><p><span class="chip">Ícone</span> pequena imagem que abre um aplicativo.</p><p><span class="chip">Widget</span> bloco informativo ou interativo, como clima, relógio e agenda.</p><p><span class="chip">Dock</span> área inferior fixa com apps importantes.</p><p><span class="chip">Gaveta de apps</span> lista completa de todos os aplicativos instalados.</p></div><div class="card"><h3>Objetivos de aprendizagem</h3><ul class="checklist"><li>Abrir e fechar aplicativos.</li><li>Diferenciar atalho de aplicativo instalado.</li><li>Mover ícones e criar pastas.</li><li>Adicionar, remover ou reposicionar widgets.</li><li>Localizar apps pela gaveta ou pela pesquisa.</li></ul></div></div>
+<h3>Procedimento: organizar um app na tela inicial</h3><div class="step"><div class="num">1</div><div>Localize o ícone na tela inicial ou na gaveta de aplicativos.</div></div><div class="step"><div class="num">2</div><div>Toque e segure até o ícone ficar móvel.</div></div><div class="step"><div class="num">3</div><div>Arraste para a posição desejada. Para criar pasta, arraste um app sobre outro.</div></div><div class="step"><div class="num">4</div><div>Solte o dedo e confira se o app ficou no lugar correto.</div></div>
+<div class="callout warn"><strong>Atenção:</strong> “Remover” normalmente apaga apenas o atalho da tela inicial. “Desinstalar” remove o aplicativo do aparelho. Leia a palavra exibida antes de confirmar.</div>
+<div class="exercise"><strong>Prática:</strong> crie uma pasta chamada “Essenciais” e coloque nela Telefone, Mensagens, Câmera e Configurações.</div>
+</div></section>
+<section class="page" id="cap6"><div class="page-content">
+<span class="badge">Unidade 6</span>
+<h2>Navegação do sistema</h2>
+<p class="lead">A navegação permite voltar, ir para a tela inicial e alternar entre aplicativos abertos. O Android pode usar botões virtuais ou gestos.</p><div class="study-illustration">
+<h3>Navegação: voltar, início e recentes</h3>
+<p>A comparação visual reduz confusão entre sair de uma tela, voltar para a tela inicial e alternar de app.</p>
+<svg aria-label="Navegação Android por botões virtuais e gestos" role="img" viewbox="0 0 760 260">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-blue-fill" height="140" rx="22" width="270" x="55" y="60"></rect><text class="svg-label" text-anchor="middle" x="190" y="88">Modo com botões</text>
+<circle class="svg-card-fill" cx="122" cy="140" r="28"></circle><text class="svg-text" font-size="26" text-anchor="middle" x="122" y="148">‹</text><text class="svg-small" text-anchor="middle" x="122" y="185">Voltar</text>
+<circle class="svg-card-fill" cx="190" cy="140" r="28"></circle><text class="svg-text" font-size="24" text-anchor="middle" x="190" y="148">●</text><text class="svg-small" text-anchor="middle" x="190" y="185">Início</text>
+<circle class="svg-card-fill" cx="258" cy="140" r="28"></circle><text class="svg-text" font-size="22" text-anchor="middle" x="258" y="148">□</text><text class="svg-small" text-anchor="middle" x="258" y="185">Recentes</text>
+<rect class="svg-green-fill" height="140" rx="22" width="270" x="435" y="60"></rect><text class="svg-label" text-anchor="middle" x="570" y="88">Modo por gestos</text>
+<rect fill="#fffdf8" height="78" rx="18" stroke="#b9d9c8" width="140" x="500" y="105"></rect>
+<path class="svg-line svg-arrow" d="M503 142 H545"></path><text class="svg-small" text-anchor="middle" x="523" y="204">Voltar</text>
+<path class="svg-line svg-arrow" d="M570 178 V128"></path><text class="svg-small" text-anchor="middle" x="570" y="204">Início</text>
+<path class="svg-line svg-arrow" d="M635 178 C610 148 610 132 625 118"></path><text class="svg-small" text-anchor="middle" x="638" y="204">Recentes</text>
+<text class="svg-small" text-anchor="middle" x="380" y="235">Escolha um modo e treine até executar sem olhar para a ficha.</text>
+</svg>
+</div>
+<div class="tableWrap"><table><thead><tr><th>Ação</th><th>Com botões virtuais</th><th>Com gestos</th><th>Quando usar</th></tr></thead><tbody><tr><td>Voltar</td><td>Toque no triângulo ou seta.</td><td>Deslize da borda esquerda ou direita para o centro.</td><td>Para retornar à tela anterior ou fechar um menu.</td></tr><tr><td>Início</td><td>Toque no círculo ou botão central.</td><td>Deslize de baixo para cima.</td><td>Para voltar à tela inicial sem fechar necessariamente o app.</td></tr><tr><td>Apps recentes</td><td>Toque no quadrado ou botão de recentes.</td><td>Deslize de baixo para cima e segure por um instante.</td><td>Para alternar entre apps já abertos.</td></tr><tr><td>Fechar app recente</td><td>Abra recentes e deslize o cartão para cima ou lado.</td><td>Mesmo procedimento.</td><td>Para remover da lista de recentes.</td></tr></tbody></table></div>
+<div class="callout ok"><strong>Para iniciantes:</strong> botões virtuais costumam ser mais fáceis no começo, porque mostram visualmente onde tocar. Gestos ficam mais rápidos depois de algum treino.</div>
+<h3>Como alterar o modo de navegação</h3><p>Em muitos aparelhos, o caminho é semelhante a <strong>Configurações &gt; Sistema &gt; Gestos &gt; Navegação do sistema</strong>. Em algumas marcas, a opção aparece como “Tela”, “Recursos avançados”, “Barra de navegação” ou “Gestos”.</p>
+<div class="exercise"><strong>Fixação:</strong> teste abrir dois aplicativos, alternar entre eles pela tela de recentes e voltar à tela inicial.</div>
+</div></section>
+<section class="page" id="cap7"><div class="page-content">
+<span class="badge">Unidade 7</span>
+<h2>Notificações e configurações rápidas</h2>
+<p class="lead">As notificações informam mensagens, chamadas, atualizações e alertas. As configurações rápidas permitem ligar e desligar funções essenciais sem entrar nos menus completos.</p><div class="study-illustration">
+<h3>Painel de notificações e atalhos rápidos</h3>
+<p>O desenho mostra que deslizar de cima para baixo abre avisos e controles essenciais do aparelho.</p>
+<svg aria-label="Painel de notificações e configurações rápidas no Android" role="img" viewbox="0 0 760 310">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect fill="#302116" height="260" rx="30" width="176" x="292" y="20"></rect><rect fill="#fffdf8" height="210" rx="20" width="148" x="306" y="45"></rect>
+<path class="svg-line svg-arrow" d="M380 20 V90"></path><text class="svg-small" x="430" y="64">deslize</text>
+<rect class="svg-blue-fill" height="74" rx="16" width="124" x="318" y="62"></rect><text class="svg-label" text-anchor="middle" x="380" y="87">Atalhos</text>
+<g transform="translate(326,98)"><circle class="svg-green-fill" cx="12" cy="12" r="12"></circle><circle class="svg-amber-fill" cx="44" cy="12" r="12"></circle><circle class="svg-violet-fill" cx="76" cy="12" r="12"></circle><circle class="svg-red-fill" cx="108" cy="12" r="12"></circle></g>
+<rect class="svg-card-fill" height="34" rx="10" width="124" x="318" y="152"></rect><text class="svg-small" text-anchor="middle" x="380" y="174">Mensagem recebida</text>
+<rect class="svg-card-fill" height="34" rx="10" width="124" x="318" y="196"></rect><text class="svg-small" text-anchor="middle" x="380" y="218">Atualização</text>
+<line class="svg-line svg-arrow" x1="318" x2="120" y1="100" y2="90"></line><rect class="svg-blue-fill" height="70" rx="14" width="110" x="35" y="55"></rect><text class="svg-label" text-anchor="middle" x="90" y="82">Wi‑Fi</text><text class="svg-small" text-anchor="middle" x="90" y="103">ligar/desligar</text>
+<line class="svg-line svg-arrow" x1="442" x2="620" y1="110" y2="88"></line><rect class="svg-amber-fill" height="70" rx="14" width="115" x="610" y="55"></rect><text class="svg-label" text-anchor="middle" x="667" y="82">Brilho</text><text class="svg-small" text-anchor="middle" x="667" y="103">ajuste rápido</text>
+<line class="svg-line svg-arrow" x1="442" x2="615" y1="168" y2="192"></line><rect class="svg-red-fill" height="70" rx="14" width="125" x="603" y="165"></rect><text class="svg-label" text-anchor="middle" x="665" y="191">Notificações</text><text class="svg-small" text-anchor="middle" x="665" y="212">avaliar antes de tocar</text>
+</svg>
+</div>
+<div class="grid2"><div class="card"><h3>Como acessar</h3><div class="step"><div class="num">1</div><div>Deslize o dedo de cima para baixo uma vez para ver notificações.</div></div><div class="step"><div class="num">2</div><div>Deslize novamente para abrir todos os atalhos rápidos.</div></div><div class="step"><div class="num">3</div><div>Toque em um atalho para ativar ou desativar. Toque e segure para abrir as configurações daquele recurso.</div></div></div><div class="card amber"><h3>Atalhos comuns</h3><p><span class="chip">Wi‑Fi</span> internet sem fio.</p><p><span class="chip">Dados móveis</span> internet da operadora.</p><p><span class="chip">Bluetooth</span> fones, caixas e relógios.</p><p><span class="chip">Lanterna</span> usa o flash da câmera.</p><p><span class="chip">Modo avião</span> desliga conexões sem fio.</p><p><span class="chip">Rotação</span> permite virar a tela.</p></div></div>
+<div class="callout danger"><strong>Alerta de segurança:</strong> notificações que dizem “seu celular está infectado”, “você ganhou um prêmio” ou “clique para limpar vírus” são frequentemente golpes ou anúncios enganosos. Não toque. Feche a notificação e peça orientação se necessário.</div>
+<div class="exercise"><strong>Prática:</strong> abra as configurações rápidas e identifique Wi‑Fi, Bluetooth, lanterna, brilho, modo avião e economia de bateria.</div>
+</div></section>
+<section class="page" id="cap8"><div class="page-content">
+<span class="badge">Unidade 8</span>
+<h2>Chamadas, contatos e mensagens</h2>
+<p class="lead">Telefone, Contatos e Mensagens são funções básicas de comunicação. O domínio dessas ferramentas permite ligar, salvar números, responder recados e identificar tentativas de golpe.</p><div class="study-illustration">
+<h3>Comunicação básica e alerta contra golpes</h3>
+<p>Telefone, contatos e mensagens se conectam; por isso, o aluno deve saber salvar números e desconfiar de pedidos de códigos.</p>
+<svg aria-label="Fluxo entre telefone, contatos, mensagens e alerta de golpe" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<circle class="svg-blue-fill" cx="190" cy="115" r="62"></circle><text class="svg-text" font-size="26" text-anchor="middle" x="190" y="108">☎</text><text class="svg-label" text-anchor="middle" x="190" y="138">Telefone</text>
+<circle class="svg-green-fill" cx="380" cy="115" r="62"></circle><text class="svg-text" font-size="26" text-anchor="middle" x="380" y="108">👤</text><text class="svg-label" text-anchor="middle" x="380" y="138">Contatos</text>
+<circle class="svg-amber-fill" cx="570" cy="115" r="62"></circle><text class="svg-text" font-size="26" text-anchor="middle" x="570" y="108">✉</text><text class="svg-label" text-anchor="middle" x="570" y="138">Mensagens</text>
+<path class="svg-line svg-arrow" d="M252 115 H318"></path><path class="svg-line svg-arrow" d="M442 115 H508"></path><path class="svg-line svg-arrow" d="M520 165 C450 215 305 215 240 165"></path>
+<rect class="svg-red-fill" height="48" rx="16" width="490" x="135" y="225"></rect><text class="svg-label" text-anchor="middle" x="380" y="247">Nunca compartilhe códigos de SMS, WhatsApp ou banco</text><text class="svg-small" text-anchor="middle" x="380" y="265">pedido urgente + link + código = sinal de golpe</text>
+</svg>
+</div>
+<div class="grid3"><div class="card green"><h3>Fazer chamada</h3><div class="step"><div class="num">1</div><div>Abra o app Telefone.</div></div><div class="step"><div class="num">2</div><div>Digite o número ou escolha um contato.</div></div><div class="step"><div class="num">3</div><div>Toque no botão verde de chamada.</div></div></div><div class="card blue"><h3>Salvar contato</h3><div class="step"><div class="num">1</div><div>Abra Contatos ou Telefone.</div></div><div class="step"><div class="num">2</div><div>Toque em adicionar ou no símbolo +.</div></div><div class="step"><div class="num">3</div><div>Digite nome e número. Prefira salvar na Conta Google.</div></div></div><div class="card amber"><h3>Enviar mensagem SMS</h3><div class="step"><div class="num">1</div><div>Abra Mensagens.</div></div><div class="step"><div class="num">2</div><div>Toque em iniciar conversa.</div></div><div class="step"><div class="num">3</div><div>Escolha o contato, digite e envie.</div></div></div></div>
+<h3>Cuidados com golpes em mensagens</h3><ul class="checklist"><li>Nunca compartilhe códigos recebidos por SMS, WhatsApp ou e-mail.</li><li>Desconfie de pedidos de dinheiro urgente, mesmo quando usam foto de conhecido.</li><li>Não clique em links de “atualização cadastral” de banco sem confirmar pelo app oficial.</li><li>Não envie foto de documento por mensagem sem ter certeza da necessidade e da origem.</li><li>Bloqueie e denuncie contatos suspeitos quando possível.</li></ul>
+<div class="exercise"><strong>Atividade:</strong> salve um contato de teste, faça uma chamada simulada ou real autorizada, depois exclua ou edite esse contato.</div>
+</div></section>
+<section class="page" id="cap9"><div class="page-content">
+<span class="badge">Unidade 9</span>
+<h2>Internet, Wi‑Fi e dados móveis</h2>
+<p class="lead">O smartphone pode se conectar à internet por Wi‑Fi ou por dados móveis. Saber a diferença evita gastos desnecessários, falhas de conexão e riscos em redes desconhecidas.</p><div class="study-illustration">
+<h3>Wi‑Fi versus dados móveis</h3>
+<p>A comparação visual ajuda o aluno a entender de onde vem a internet e quando pode haver consumo da franquia da operadora.</p>
+<svg aria-label="Comparação entre Wi-Fi e dados móveis no smartphone" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<g transform="translate(85,60)"><rect class="svg-blue-fill" height="70" rx="16" width="110" x="0" y="70"></rect><text class="svg-label" text-anchor="middle" x="55" y="102">Roteador</text><text class="svg-small" text-anchor="middle" x="55" y="122">casa/escola</text><path class="svg-line" d="M28 55 Q55 30 82 55"></path><path class="svg-line" d="M40 68 Q55 55 70 68"></path></g>
+<g transform="translate(325,35)"><rect fill="#302116" height="210" rx="26" width="110"></rect><rect fill="#fffdf8" height="156" rx="16" width="86" x="12" y="24"></rect><text class="svg-label" text-anchor="middle" x="55" y="112">Celular</text></g>
+<g transform="translate(560,72)"><rect class="svg-green-fill" height="120" rx="14" width="95" x="0" y="25"></rect><rect class="svg-card-fill" height="30" rx="8" width="38" x="28" y="0"></rect><text class="svg-label" text-anchor="middle" x="48" y="90">Torre</text><text class="svg-small" text-anchor="middle" x="48" y="111">operadora</text></g>
+<path class="svg-line svg-arrow" d="M195 130 C240 75 285 70 325 95"></path><text class="svg-label" text-anchor="middle" x="254" y="77">Wi‑Fi</text>
+<path class="svg-line svg-arrow" d="M560 130 C515 75 475 70 435 95"></path><text class="svg-label" text-anchor="middle" x="500" y="77">Dados móveis</text>
+<rect class="svg-blue-fill" height="34" rx="14" width="250" x="75" y="248"></rect><text class="svg-small" text-anchor="middle" x="200" y="270">Wi‑Fi: não consome franquia do chip</text>
+<rect class="svg-green-fill" height="34" rx="14" width="250" x="435" y="248"></rect><text class="svg-small" text-anchor="middle" x="560" y="270">Dados móveis: dependem do plano da operadora</text>
+</svg>
+</div>
+<div class="tableWrap"><table><thead><tr><th>Tipo de conexão</th><th>Como funciona</th><th>Vantagens</th><th>Cuidados</th></tr></thead><tbody><tr><td>Wi‑Fi</td><td>Conecta o celular a uma rede sem fio, normalmente de casa, escola ou trabalho.</td><td>Geralmente é mais estável e não consome franquia da operadora.</td><td>Evite redes públicas desconhecidas para acessar banco, e-mail ou documentos sensíveis.</td></tr><tr><td>Dados móveis</td><td>Usa a internet do chip da operadora.</td><td>Funciona fora de casa, quando há sinal.</td><td>Pode consumir pacote de internet e gerar cobrança conforme o plano.</td></tr><tr><td>Bluetooth</td><td>Conexão curta entre aparelhos.</td><td>Serve para fones, caixas de som, relógios e transferência simples.</td><td>Desative quando não estiver usando para economizar bateria e reduzir exposição.</td></tr><tr><td>Roteador Wi‑Fi</td><td>Compartilha os dados móveis do seu celular com outro aparelho.</td><td>Útil em emergência.</td><td>Consome bateria e pacote de dados rapidamente.</td></tr></tbody></table></div>
+<h3>Procedimento: conectar ao Wi‑Fi</h3><div class="step"><div class="num">1</div><div>Abra Configurações e procure por Rede, Internet ou Wi‑Fi.</div></div><div class="step"><div class="num">2</div><div>Ative o Wi‑Fi e selecione a rede correta.</div></div><div class="step"><div class="num">3</div><div>Digite a senha com atenção, observando letras maiúsculas, números e símbolos.</div></div><div class="step"><div class="num">4</div><div>Confirme se o ícone de Wi‑Fi apareceu na parte superior da tela.</div></div>
+<div class="callout"><strong>Navegação:</strong> o navegador pode aparecer como Chrome, Internet, Samsung Internet ou Browser. A barra superior serve tanto para digitar endereços quanto para pesquisar assuntos.</div>
+<div class="exercise"><strong>Fixação:</strong> explique quando é melhor usar Wi‑Fi e quando é necessário usar dados móveis.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="cap10"><div class="page-content">
+<span class="badge">Unidade 10</span>
+<h2>Instalação, abertura e remoção de aplicativos</h2>
+<p class="lead">Aplicativos ampliam as funções do celular, mas também podem trazer riscos quando baixados de fontes duvidosas ou quando pedem permissões exageradas.</p><div class="study-illustration">
+<h3>Instalação segura de aplicativos</h3>
+<p>Antes de instalar, o aluno deve verificar origem, desenvolvedor, avaliações e permissões solicitadas.</p>
+<svg aria-label="Fluxo de instalação segura de aplicativos pela Play Store" role="img" viewbox="0 0 760 260">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-blue-fill" height="80" rx="18" width="128" x="28" y="82"></rect><text class="svg-label" text-anchor="middle" x="92" y="112">Play Store</text><text class="svg-small" text-anchor="middle" x="92" y="135">fonte oficial</text>
+<rect class="svg-card-fill" height="80" rx="18" width="128" x="205" y="82"></rect><text class="svg-label" text-anchor="middle" x="269" y="112">Pesquisar</text><text class="svg-small" text-anchor="middle" x="269" y="135">nome correto</text>
+<rect class="svg-amber-fill" height="80" rx="18" width="128" x="382" y="82"></rect><text class="svg-label" text-anchor="middle" x="446" y="110">Conferir</text><text class="svg-small" text-anchor="middle" x="446" y="132">desenvolvedor</text>
+<rect class="svg-green-fill" height="80" rx="18" width="128" x="559" y="82"></rect><text class="svg-label" text-anchor="middle" x="623" y="110">Instalar</text><text class="svg-small" text-anchor="middle" x="623" y="132">se for confiável</text>
+<path class="svg-line svg-arrow" d="M156 122 H205"></path><path class="svg-line svg-arrow" d="M333 122 H382"></path><path class="svg-line svg-arrow" d="M510 122 H559"></path>
+<rect class="svg-red-fill" height="42" rx="16" width="390" x="185" y="190"></rect><text class="svg-label" text-anchor="middle" x="380" y="216">Permissões exageradas ou link fora da loja: pare e avalie</text>
+<path class="svg-line svg-arrow" d="M446 162 C450 178 420 188 380 190"></path>
+</svg>
+</div>
+<div class="grid2"><div class="card green"><h3>Instalar com segurança</h3><div class="step"><div class="num">1</div><div>Abra a Play Store.</div></div><div class="step"><div class="num">2</div><div>Pesquise o nome do app.</div></div><div class="step"><div class="num">3</div><div>Confira nome do desenvolvedor, avaliação, comentários e quantidade de downloads.</div></div><div class="step"><div class="num">4</div><div>Toque em Instalar e aguarde.</div></div></div><div class="card red"><h3>Sinais de alerta</h3><ul class="checklist"><li>Aplicativo enviado por link fora da Play Store.</li><li>Nome parecido com banco, governo ou loja, mas com desenvolvedor estranho.</li><li>Promessas exageradas: ganhar dinheiro fácil, limpar vírus milagrosamente, liberar prêmio.</li><li>Pedido de permissões sem relação com a função do app.</li><li>Solicitação de senha, cartão, código ou documento sem motivo claro.</li></ul></div></div>
+<h3>Remover ou desinstalar</h3><p>Para remover apenas da tela inicial, toque e segure o ícone e escolha “Remover”. Para apagar o aplicativo do celular, escolha “Desinstalar” ou acesse Configurações &gt; Aplicativos &gt; selecione o app &gt; Desinstalar.</p>
+<div class="callout warn"><strong>Permissões:</strong> um app de câmera precisa da câmera; um app de mapa precisa de localização; um app de lanterna não deveria precisar de contatos ou SMS. Quando a permissão não faz sentido, desconfie.</div>
+<div class="exercise"><strong>Prática:</strong> pesquise um aplicativo conhecido na Play Store e registre: nome, desenvolvedor, avaliação e permissões principais.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="cap11"><div class="page-content">
+<span class="badge">Unidade 11</span>
+<h2>Câmera, galeria, fotos e vídeos</h2>
+<p class="lead">A câmera do smartphone é usada para registrar momentos, digitalizar documentos, fazer chamadas de vídeo e ler QR Codes. A galeria organiza o que foi capturado.</p><div class="study-illustration">
+<h3>Da câmera ao compartilhamento</h3>
+<p>O fluxo mostra que a foto não termina no clique: ela é salva, organizada e pode ser enviada com cuidado.</p>
+<svg aria-label="Fluxo de fotografia: câmera, galeria, seleção e compartilhamento" role="img" viewbox="0 0 760 260">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-blue-fill" height="92" rx="18" width="126" x="50" y="78"></rect><circle cx="113" cy="120" fill="#fffdf8" r="24" stroke="#cddaf4" stroke-width="4"></circle><text class="svg-label" text-anchor="middle" x="113" y="198">1. Câmera</text>
+<rect class="svg-green-fill" height="92" rx="18" width="126" x="237" y="78"></rect><rect fill="#fffdf8" height="52" rx="10" width="84" x="258" y="98"></rect><path class="svg-thin" d="M263 143 L285 120 L305 138 L320 122 L338 143"></path><text class="svg-label" text-anchor="middle" x="300" y="198">2. Galeria</text>
+<rect class="svg-amber-fill" height="92" rx="18" width="126" x="424" y="78"></rect><path class="svg-line" d="M457 125 L478 145 L518 101"></path><text class="svg-label" text-anchor="middle" x="487" y="198">3. Selecionar</text>
+<rect class="svg-violet-fill" height="92" rx="18" width="126" x="611" y="78"></rect><circle class="svg-card-fill" cx="650" cy="112" r="10"></circle><circle class="svg-card-fill" cx="700" cy="98" r="10"></circle><circle class="svg-card-fill" cx="700" cy="145" r="10"></circle><path class="svg-line" d="M660 112 L690 100 M660 118 L690 140"></path><text class="svg-label" text-anchor="middle" x="674" y="198">4. Compartilhar</text>
+<path class="svg-line svg-arrow" d="M176 124 H237"></path><path class="svg-line svg-arrow" d="M363 124 H424"></path><path class="svg-line svg-arrow" d="M550 124 H611"></path>
+<text class="svg-small" text-anchor="middle" x="380" y="238">Antes de compartilhar, confirme se a imagem não contém dados pessoais ou documentos sensíveis.</text>
+</svg>
+</div>
+<div class="grid3"><div class="card"><h3>Fotografar</h3><div class="step"><div class="num">1</div><div>Abra Câmera.</div></div><div class="step"><div class="num">2</div><div>Enquadre a imagem.</div></div><div class="step"><div class="num">3</div><div>Toque no botão circular.</div></div></div><div class="card"><h3>Filmar</h3><div class="step"><div class="num">1</div><div>Abra Câmera e selecione Vídeo.</div></div><div class="step"><div class="num">2</div><div>Toque no botão de gravação.</div></div><div class="step"><div class="num">3</div><div>Toque novamente para parar.</div></div></div><div class="card"><h3>Compartilhar</h3><div class="step"><div class="num">1</div><div>Abra Fotos ou Galeria.</div></div><div class="step"><div class="num">2</div><div>Escolha a imagem.</div></div><div class="step"><div class="num">3</div><div>Toque em Compartilhar e escolha o app.</div></div></div></div>
+<h3>Cuidados didáticos e práticos</h3><ul class="checklist"><li>Antes de fotografar pessoas, peça autorização quando necessário.</li><li>Evite compartilhar documentos pessoais em grupos ou conversas desconhecidas.</li><li>Apague fotos duplicadas, borradas ou desnecessárias para liberar espaço.</li><li>Ao ler QR Code, confira o endereço ou contexto antes de tocar no link.</li><li>Use a câmera para registrar quadros, comprovantes, atividades e materiais de estudo.</li></ul>
+<div class="exercise"><strong>Atividade:</strong> tire uma foto de um objeto, encontre-a na galeria, edite o corte da imagem e compartilhe com um contato autorizado ou em uma conversa de teste.</div>
+</div></section>
+<section class="page" id="cap12"><div class="page-content">
+<span class="badge">Unidade 12</span>
+<h2>Arquivos, downloads e armazenamento</h2>
+<p class="lead">O armazenamento guarda fotos, vídeos, documentos, áudios, aplicativos e downloads. Quando fica cheio, o celular pode travar, deixar de atualizar apps e impedir novas fotos.</p><div class="study-illustration">
+<h3>Organização do armazenamento</h3>
+<p>Fotos, vídeos, downloads e apps ocupam espaços diferentes; liberar espaço exige identificar o que está consumindo memória.</p>
+<svg aria-label="Armazenamento do smartphone dividido em fotos, vídeos, downloads, aplicativos e documentos" role="img" viewbox="0 0 760 300">
+<rect class="svg-card-fill" height="190" rx="26" width="600" x="80" y="55"></rect>
+<text class="svg-text" font-size="20" text-anchor="middle" x="380" y="35">Armazenamento interno</text>
+<rect class="svg-blue-fill" height="112" rx="16" width="115" x="110" y="88"></rect><text class="svg-label" text-anchor="middle" x="168" y="125">Fotos</text><text class="svg-small" text-anchor="middle" x="168" y="150">galeria</text><text class="svg-small" text-anchor="middle" x="168" y="172">muitas imagens</text>
+<rect class="svg-amber-fill" height="112" rx="16" width="115" x="238" y="88"></rect><text class="svg-label" text-anchor="middle" x="296" y="125">Vídeos</text><text class="svg-small" text-anchor="middle" x="296" y="150">ocupam</text><text class="svg-small" text-anchor="middle" x="296" y="172">mais espaço</text>
+<rect class="svg-green-fill" height="112" rx="16" width="115" x="366" y="88"></rect><text class="svg-label" text-anchor="middle" x="424" y="125">Apps</text><text class="svg-small" text-anchor="middle" x="424" y="150">instalados</text><text class="svg-small" text-anchor="middle" x="424" y="172">e cache</text>
+<rect class="svg-violet-fill" height="112" rx="16" width="115" x="494" y="88"></rect><text class="svg-label" text-anchor="middle" x="552" y="125">Downloads</text><text class="svg-small" text-anchor="middle" x="552" y="150">PDF, áudio</text><text class="svg-small" text-anchor="middle" x="552" y="172">e anexos</text>
+<rect class="svg-red-fill" height="36" rx="18" width="380" x="190" y="220"></rect><text class="svg-label" text-anchor="middle" x="380" y="243">Quando enche: celular fica lento e falha em atualizações</text>
+</svg>
+</div>
+<div class="grid2"><div class="card blue"><h3>Onde ficam os arquivos?</h3><p><span class="chip">Fotos/Galeria</span> imagens e vídeos.</p><p><span class="chip">Downloads</span> arquivos baixados da internet, e-mail ou WhatsApp.</p><p><span class="chip">Documentos</span> PDFs, textos, planilhas e arquivos recebidos.</p><p><span class="chip">Áudios</span> gravações e mensagens de voz salvas.</p></div><div class="card green"><h3>Como liberar espaço</h3><ul class="checklist"><li>Apague imagens duplicadas ou borradas.</li><li>Remova vídeos grandes que não são mais necessários.</li><li>Desinstale aplicativos pouco usados.</li><li>Limpe a pasta Downloads.</li><li>Transfira fotos importantes para nuvem ou computador.</li><li>Use o gerenciador de armazenamento do Android.</li></ul></div></div>
+<div class="callout warn"><strong>Cuidado:</strong> não apague arquivos que você não reconhece dentro de pastas do sistema. Prefira limpar fotos, vídeos, downloads e apps conhecidos.</div>
+<div class="exercise"><strong>Prática guiada:</strong> abra o app Arquivos ou Meus Arquivos, localize a pasta Downloads, identifique três tipos de arquivo e registre quais poderiam ser apagados com segurança.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="cap13"><div class="page-content">
+<span class="badge">Unidade 13</span>
+<h2>Conta Google, backup e sincronização</h2>
+<p class="lead">A Conta Google conecta o Android à Play Store, Gmail, contatos, backup, Google Fotos, Drive, mapas e vários serviços. Ela também ajuda a recuperar dados quando o aparelho é trocado, perdido ou danificado.</p><div class="study-illustration">
+<h3>Backup e sincronização na Conta Google</h3>
+<p>O esquema mostra que os dados importantes podem sair do aparelho e ficar protegidos na nuvem para recuperação futura.</p>
+<svg aria-label="Backup e sincronização entre celular, Conta Google e nuvem" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<g transform="translate(90,55)"><rect fill="#302116" height="200" rx="28" width="125"></rect><rect fill="#fffdf8" height="148" rx="16" width="101" x="12" y="24"></rect><text class="svg-label" text-anchor="middle" x="62" y="95">Celular</text><text class="svg-small" text-anchor="middle" x="62" y="118">contatos/fotos</text></g>
+<g transform="translate(318,70)"><path class="svg-blue-fill" d="M52 15 C80 0 114 16 119 49 C145 54 160 73 160 99 C160 129 136 150 103 150 H42 C16 150 0 132 0 107 C0 84 14 67 36 62 C34 43 40 27 52 15 Z"></path><text class="svg-label" text-anchor="middle" x="80" y="82">Conta Google</text><text class="svg-small" text-anchor="middle" x="80" y="105">backup na nuvem</text></g>
+<g transform="translate(555,55)"><rect fill="#302116" height="200" rx="28" width="125"></rect><rect fill="#fffdf8" height="148" rx="16" width="101" x="12" y="24"></rect><text class="svg-label" text-anchor="middle" x="62" y="95">Novo celular</text><text class="svg-small" text-anchor="middle" x="62" y="118">restaurar dados</text></g>
+<path class="svg-line svg-arrow" d="M215 150 C255 105 285 100 318 135"></path><text class="svg-label" text-anchor="middle" x="268" y="100">Backup</text>
+<path class="svg-line svg-arrow" d="M478 135 C515 100 542 105 555 150"></path><text class="svg-label" text-anchor="middle" x="518" y="100">Restauração</text>
+<rect class="svg-green-fill" height="38" rx="16" width="300" x="230" y="238"></rect><text class="svg-label" text-anchor="middle" x="380" y="262">Sem a senha da conta, recuperar dados fica difícil</text>
+</svg>
+</div>
+<div class="grid3"><div class="card green"><h3>Conta Google</h3><p>Normalmente é um endereço Gmail. Permite baixar apps, sincronizar contatos e proteger o aparelho.</p></div><div class="card blue"><h3>Backup</h3><p>É uma cópia de segurança de dados importantes, como contatos, configurações, histórico de chamadas e algumas informações de apps.</p></div><div class="card amber"><h3>Sincronização</h3><p>Mantém informações atualizadas entre celular e nuvem, como contatos, agenda, e-mails e fotos.</p></div></div>
+<h3>Procedimento: verificar backup</h3><div class="step"><div class="num">1</div><div>Abra Configurações.</div></div><div class="step"><div class="num">2</div><div>Procure por Google, Sistema ou Backup.</div></div><div class="step"><div class="num">3</div><div>Verifique se o backup está ativado.</div></div><div class="step"><div class="num">4</div><div>Confira a conta usada. Ela deve ser uma conta que o usuário conhece e consegue acessar.</div></div>
+<div class="callout danger"><strong>Erro grave comum:</strong> usar uma Conta Google criada por outra pessoa e não saber a senha. Isso pode dificultar a recuperação do aparelho e dos dados. O usuário deve conhecer seu e-mail, senha e forma de recuperação.</div>
+<div class="exercise"><strong>Registro:</strong> escreva, sem colocar a senha, qual e-mail Google está configurado no seu aparelho.</div><div class="answer-line"></div>
+</div></section>
+<section class="page" id="cap14"><div class="page-content">
+<span class="badge">Unidade 14</span>
+<h2>Segurança e privacidade no Android</h2>
+<p class="lead">O smartphone guarda dados pessoais, conversas, fotos, contatos, senhas, localização e acesso a bancos. Por isso, segurança não é assunto avançado: é uma habilidade básica.</p><div class="study-illustration">
+<h3>Camadas de proteção do smartphone</h3>
+<p>Segurança deve ser entendida como várias barreiras trabalhando juntas, não como uma única configuração.</p>
+<svg aria-label="Camadas de segurança do smartphone Android" role="img" viewbox="0 0 760 320">
+<path class="svg-red-fill" d="M380 35 L565 98 V168 C565 237 493 281 380 300 C267 281 195 237 195 168 V98 Z"></path>
+<path class="svg-green-fill" d="M380 72 L525 120 V170 C525 222 470 255 380 272 C290 255 235 222 235 170 V120 Z"></path>
+<path class="svg-blue-fill" d="M380 108 L485 142 V176 C485 210 444 235 380 248 C316 235 275 210 275 176 V142 Z"></path>
+<text class="svg-text" font-size="22" text-anchor="middle" x="380" y="157">Dados</text>
+<text class="svg-small" text-anchor="middle" x="380" y="182">fotos, senhas, contatos</text>
+<text class="svg-label" text-anchor="middle" x="380" y="115">Bloqueio de tela</text>
+<text class="svg-label" text-anchor="middle" x="380" y="232">Apps confiáveis</text>
+<text class="svg-label" text-anchor="middle" x="380" y="292">Atenção contra golpes</text>
+<rect class="svg-card-fill" height="48" rx="14" width="150" x="35" y="60"></rect><text class="svg-label" text-anchor="middle" x="110" y="90">PIN forte</text>
+<rect class="svg-card-fill" height="48" rx="14" width="150" x="575" y="60"></rect><text class="svg-label" text-anchor="middle" x="650" y="90">Atualizações</text>
+<rect class="svg-card-fill" height="48" rx="14" width="150" x="35" y="215"></rect><text class="svg-label" text-anchor="middle" x="110" y="245">Permissões</text>
+<rect class="svg-card-fill" height="48" rx="14" width="150" x="575" y="215"></rect><text class="svg-label" text-anchor="middle" x="650" y="245">2 etapas</text>
+</svg>
+</div>
+<div class="grid2"><div class="card green"><h3>Proteções obrigatórias</h3><ul class="checklist"><li>Use bloqueio de tela com PIN, senha, padrão, digital ou rosto.</li><li>Evite senhas óbvias como 1234, 0000 ou data de nascimento.</li><li>Mantenha Android e aplicativos atualizados.</li><li>Baixe apps preferencialmente pela Play Store.</li><li>Ative verificação em duas etapas na Conta Google.</li><li>Tenha e-mail e telefone de recuperação atualizados.</li></ul></div><div class="card red"><h3>Comportamentos perigosos</h3><ul class="checklist"><li>Enviar código de verificação para outra pessoa.</li><li>Clicar em link de prêmio, promoção ou banco sem confirmar origem.</li><li>Instalar app por arquivo recebido em mensagem.</li><li>Emprestar o celular desbloqueado para desconhecidos.</li><li>Salvar senhas em bloco de notas ou conversa.</li><li>Permitir acesso total a apps desconhecidos.</li></ul></div></div>
+<h3>Permissões de aplicativos</h3><p>Permissão é a autorização dada a um aplicativo para acessar partes do celular, como câmera, microfone, localização, contatos, telefone, SMS, arquivos ou notificações. O usuário deve avaliar se a permissão combina com a função do aplicativo.</p>
+<div class="tableWrap"><table><thead><tr><th>Permissão</th><th>Quando faz sentido</th><th>Quando desconfiar</th></tr></thead><tbody><tr><td>Câmera</td><td>Apps de foto, vídeo, reuniões e leitura de QR Code.</td><td>Jogos simples, calculadoras ou lanternas pedindo câmera sem necessidade.</td></tr><tr><td>Microfone</td><td>Chamadas, gravação de voz, videoaula e mensagens de áudio.</td><td>Apps que não trabalham com som ou comunicação.</td></tr><tr><td>Localização</td><td>Mapas, transporte, previsão do tempo e entrega.</td><td>Apps que funcionam sem saber onde o usuário está.</td></tr><tr><td>Contatos</td><td>Telefone, mensagens e apps de comunicação.</td><td>Apps de edição, jogos e utilitários simples.</td></tr><tr><td>SMS</td><td>Apps oficiais que validam número, com cautela.</td><td>Apps desconhecidos pedindo ler mensagens e códigos.</td></tr></tbody></table></div>
+<div class="callout danger"><strong>Regra de ouro:</strong> código de verificação é como senha. Nunca deve ser informado a terceiros, mesmo que a pessoa diga ser funcionário, parente, banco, loja, suporte técnico ou amigo.</div>
+</div></section>
+<section class="page" id="cap15"><div class="page-content">
+<span class="badge">Unidade 15</span>
+<h2>Acessibilidade e recursos úteis</h2>
+<p class="lead">Acessibilidade não serve apenas para pessoas com deficiência. Ela ajuda qualquer usuário que precise de letras maiores, mais contraste, leitura em voz alta, legendas, ampliação ou comandos mais simples.</p><div class="study-illustration">
+<h3>Recursos de acessibilidade mais úteis</h3>
+<p>A imagem organiza os ajustes que melhoram leitura, toque, audição e conforto visual.</p>
+<svg aria-label="Recursos de acessibilidade no Android: fonte, contraste, ampliação, áudio e legenda" role="img" viewbox="0 0 760 280">
+<circle class="svg-violet-fill" cx="380" cy="140" r="62"></circle><text class="svg-text" font-size="20" text-anchor="middle" x="380" y="132">Acesso</text><text class="svg-small" text-anchor="middle" x="380" y="156">mais fácil</text>
+<rect class="svg-blue-fill" height="58" rx="16" width="150" x="55" y="45"></rect><text class="svg-label" text-anchor="middle" x="130" y="70">Fonte maior</text><text class="svg-small" text-anchor="middle" x="130" y="90">ler menus</text>
+<rect class="svg-green-fill" height="58" rx="16" width="150" x="555" y="45"></rect><text class="svg-label" text-anchor="middle" x="630" y="70">Contraste</text><text class="svg-small" text-anchor="middle" x="630" y="90">ver melhor</text>
+<rect class="svg-amber-fill" height="58" rx="16" width="150" x="55" y="177"></rect><text class="svg-label" text-anchor="middle" x="130" y="202">Ampliação</text><text class="svg-small" text-anchor="middle" x="130" y="222">dar zoom</text>
+<rect class="svg-red-fill" height="58" rx="16" width="150" x="555" y="177"></rect><text class="svg-label" text-anchor="middle" x="630" y="202">Legendas</text><text class="svg-small" text-anchor="middle" x="630" y="222">áudio/vídeo</text>
+<path class="svg-line" d="M205 75 C265 90 310 105 334 122"></path><path class="svg-line" d="M555 75 C495 90 450 105 426 122"></path><path class="svg-line" d="M205 205 C265 190 310 175 334 158"></path><path class="svg-line" d="M555 205 C495 190 450 175 426 158"></path>
+</svg>
+</div>
+<div class="grid3"><div class="card blue"><h3>Tamanho da fonte</h3><p>Aumenta letras em menus e aplicativos. Caminho comum: Configurações &gt; Tela &gt; Tamanho da fonte.</p></div><div class="card blue"><h3>Tamanho de exibição</h3><p>Aumenta ícones, botões e elementos da interface.</p></div><div class="card violet"><h3>Ampliação</h3><p>Permite dar zoom em qualquer área da tela, útil para textos pequenos.</p></div><div class="card green"><h3>TalkBack</h3><p>Leitor de tela para pessoas cegas ou com baixa visão. Deve ser ativado com orientação, pois muda a forma de navegação.</p></div><div class="card amber"><h3>Legenda instantânea</h3><p>Exibe legendas automáticas em alguns conteúdos de áudio e vídeo, quando disponível.</p></div><div class="card soft"><h3>Modo escuro e brilho</h3><p>Reduz desconforto visual em ambientes escuros e pode economizar bateria em algumas telas.</p></div></div>
+<h3>Apps nativos úteis</h3><p>Além das funções principais, o Android geralmente inclui calculadora, relógio, despertador, calendário, gravador, notas, previsão do tempo, mapas, tradutor ou ferramentas semelhantes. Esses recursos ajudam em tarefas cotidianas e educacionais.</p>
+<div class="exercise"><strong>Prática:</strong> aumente temporariamente o tamanho da fonte, observe a diferença e depois retorne ao tamanho anterior ou escolha o mais confortável.</div>
+</div></section>
+<section class="page" id="cap16"><div class="page-content">
+<span class="badge">Unidade 16</span>
+<h2>Manutenção básica e solução de problemas</h2>
+<p class="lead">Muitos problemas comuns podem ser resolvidos com ações simples: reiniciar, conferir conexão, atualizar, liberar espaço, limpar cache ou revisar configurações.</p><div class="study-illustration">
+<h3>Raciocínio para resolver problemas comuns</h3>
+<p>A sequência ajuda o aluno a testar causas simples antes de concluir que o aparelho está quebrado.</p>
+<svg aria-label="Fluxograma de manutenção básica do celular" role="img" viewbox="0 0 760 300">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-red-fill" height="48" rx="16" width="176" x="292" y="20"></rect><text class="svg-label" text-anchor="middle" x="380" y="50">Problema apareceu</text>
+<rect class="svg-blue-fill" height="58" rx="16" width="140" x="60" y="112"></rect><text class="svg-label" text-anchor="middle" x="130" y="136">1. Reiniciar</text><text class="svg-small" text-anchor="middle" x="130" y="156">ação inicial</text>
+<rect class="svg-green-fill" height="58" rx="16" width="140" x="230" y="112"></rect><text class="svg-label" text-anchor="middle" x="300" y="136">2. Conexão</text><text class="svg-small" text-anchor="middle" x="300" y="156">Wi‑Fi/dados</text>
+<rect class="svg-amber-fill" height="58" rx="16" width="140" x="400" y="112"></rect><text class="svg-label" text-anchor="middle" x="470" y="136">3. Espaço</text><text class="svg-small" text-anchor="middle" x="470" y="156">armazenamento</text>
+<rect class="svg-violet-fill" height="58" rx="16" width="140" x="570" y="112"></rect><text class="svg-label" text-anchor="middle" x="640" y="136">4. Atualizar</text><text class="svg-small" text-anchor="middle" x="640" y="156">apps/sistema</text>
+<rect class="svg-card-fill" height="48" rx="16" width="260" x="250" y="225"></rect><text class="svg-label" text-anchor="middle" x="380" y="255">Persistiu? pedir ajuda técnica</text>
+<path class="svg-line svg-arrow" d="M380 68 C300 88 180 92 130 112"></path><path class="svg-line svg-arrow" d="M380 68 C350 90 320 94 300 112"></path><path class="svg-line svg-arrow" d="M380 68 C410 90 450 94 470 112"></path><path class="svg-line svg-arrow" d="M380 68 C470 88 590 92 640 112"></path>
+<path class="svg-line svg-arrow" d="M130 170 C210 205 260 220 300 225"></path><path class="svg-line svg-arrow" d="M640 170 C560 205 500 220 460 225"></path>
+</svg>
+</div>
+<div class="tableWrap"><table><thead><tr><th>Problema</th><th>Possível causa</th><th>Primeiras ações</th><th>Quando pedir ajuda</th></tr></thead><tbody><tr><td>Celular lento</td><td>Muitos apps abertos, armazenamento cheio, sistema desatualizado.</td><td>Reiniciar, apagar arquivos inúteis, remover apps pouco usados, atualizar.</td><td>Se continuar travando muito ou aquecendo sem motivo.</td></tr><tr><td>Internet não funciona</td><td>Wi‑Fi desconectado, senha errada, dados móveis sem sinal.</td><td>Ativar e desativar modo avião, reconectar Wi‑Fi, reiniciar roteador, verificar créditos/franquia.</td><td>Se outros aparelhos também não conectarem ou se houver cobrança inesperada.</td></tr><tr><td>App fecha sozinho</td><td>Falha do app, falta de atualização ou cache corrompido.</td><td>Atualizar, limpar cache, reiniciar, reinstalar.</td><td>Se for app de banco, governo ou trabalho e houver risco de perda de dados.</td></tr><tr><td>Bateria acaba rápido</td><td>Brilho alto, localização ativa, apps em segundo plano.</td><td>Reduzir brilho, ativar economia, fechar apps, desativar recursos não usados.</td><td>Se a bateria inchar, aquecer demais ou descarregar muito rapidamente.</td></tr><tr><td>Não carrega</td><td>Cabo danificado, carregador ruim, sujeira na porta, problema físico.</td><td>Testar outro cabo e tomada, observar encaixe, remover capinha se atrapalhar.</td><td>Se houver cheiro de queimado, aquecimento forte ou porta quebrada.</td></tr><tr><td>Sem som</td><td>Volume baixo, modo silencioso, Bluetooth conectado, app específico sem permissão.</td><td>Aumentar volume, desativar silencioso, desligar Bluetooth, testar outro app.</td><td>Se alto-falante ou microfone não funcionar em nenhum app.</td></tr></tbody></table></div>
+<div class="callout ok"><strong>Primeira regra de manutenção:</strong> reiniciar o aparelho é a medida inicial mais segura para pequenos travamentos, falhas de som, lentidão e conexão instável.</div>
+<div class="exercise"><strong>Estudo de caso:</strong> “O celular conecta ao Wi‑Fi, mas não abre páginas.” Escreva três verificações que você faria.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="pratica"><div class="page-content">
+<span class="badge">Unidade 17</span>
+<h2>Laboratório prático orientado</h2>
+<p class="lead">As atividades abaixo consolidam as habilidades principais. Podem ser usadas como roteiro de aula, tarefa individual ou avaliação prática.</p><div class="study-illustration">
+<h3>Sequência do laboratório prático</h3>
+<p>Use o fluxo como roteiro de execução: reconhecer, configurar, conectar, comunicar, registrar e revisar.</p>
+<svg aria-label="Sequência de laboratório prático para aprender Android" role="img" viewbox="0 0 760 250">
+<defs><marker id="arrowTip" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#8f4d1f"></path></marker></defs>
+<rect class="svg-blue-fill" height="66" rx="16" width="100" x="30" y="90"></rect><text class="svg-label" text-anchor="middle" x="80" y="117">Reconhecer</text><text class="svg-small" text-anchor="middle" x="80" y="137">partes</text>
+<rect class="svg-green-fill" height="66" rx="16" width="100" x="155" y="90"></rect><text class="svg-label" text-anchor="middle" x="205" y="117">Navegar</text><text class="svg-small" text-anchor="middle" x="205" y="137">gestos</text>
+<rect class="svg-amber-fill" height="66" rx="16" width="100" x="280" y="90"></rect><text class="svg-label" text-anchor="middle" x="330" y="117">Conectar</text><text class="svg-small" text-anchor="middle" x="330" y="137">Wi‑Fi</text>
+<rect class="svg-violet-fill" height="66" rx="16" width="100" x="405" y="90"></rect><text class="svg-label" text-anchor="middle" x="455" y="117">Comunicar</text><text class="svg-small" text-anchor="middle" x="455" y="137">contatos</text>
+<rect class="svg-red-fill" height="66" rx="16" width="100" x="530" y="90"></rect><text class="svg-label" text-anchor="middle" x="580" y="117">Proteger</text><text class="svg-small" text-anchor="middle" x="580" y="137">senhas</text>
+<rect class="svg-card-fill" height="66" rx="16" width="80" x="655" y="90"></rect><text class="svg-label" text-anchor="middle" x="695" y="117">Revisar</text><text class="svg-small" text-anchor="middle" x="695" y="137">dúvidas</text>
+<path class="svg-line svg-arrow" d="M130 123 H155"></path><path class="svg-line svg-arrow" d="M255 123 H280"></path><path class="svg-line svg-arrow" d="M380 123 H405"></path><path class="svg-line svg-arrow" d="M505 123 H530"></path><path class="svg-line svg-arrow" d="M630 123 H655"></path>
+<text class="svg-small" text-anchor="middle" x="380" y="205">O aluno deve fazer no aparelho real e registrar onde precisou de ajuda.</text>
+</svg>
+</div>
+<div class="exercise"><strong>1. Reconhecimento físico:</strong> identifique botão liga/desliga, volume, câmeras, entrada de carregamento, microfone, alto-falante e gaveta do chip.</div>
+<div class="exercise"><strong>2. Segurança inicial:</strong> verifique se há bloqueio de tela ativo. Identifique o método usado sem registrar a senha nesta ficha.</div>
+<div class="exercise"><strong>3. Navegação:</strong> abra Telefone, Câmera e Configurações. Use Voltar, Início e Apps recentes.</div>
+<div class="exercise"><strong>4. Configurações rápidas:</strong> localize Wi‑Fi, dados móveis, Bluetooth, lanterna, modo avião, brilho e economia de bateria.</div>
+<div class="exercise"><strong>5. Conexão:</strong> conecte-se a uma rede Wi‑Fi conhecida e confirme o ícone na parte superior da tela.</div>
+<div class="exercise"><strong>6. Contatos:</strong> crie um contato de teste, encontre-o na lista, edite o nome e depois exclua se necessário.</div>
+<div class="exercise"><strong>7. Câmera:</strong> tire uma foto, localize na galeria, amplie com dois dedos e compartilhe de modo controlado.</div>
+<div class="exercise"><strong>8. Aplicativos:</strong> pesquise um app conhecido na Play Store e identifique desenvolvedor, avaliação e permissões.</div>
+<div class="exercise"><strong>9. Arquivos:</strong> abra Downloads e identifique pelo menos três tipos de arquivos.</div>
+<div class="exercise"><strong>10. Backup:</strong> verifique se a Conta Google e o backup estão configurados.</div>
+<div class="callout"><strong>Registro do professor:</strong> anote abaixo quais tarefas o aluno realizou com autonomia e quais ainda exigem reforço.</div><div class="note-area"></div>
+</div></section>
+<section class="page" id="avaliacao"><div class="page-content">
+<span class="badge">✅ Revisão final</span>
+<h2>Autoavaliação e revisão</h2>
+<p class="lead">Marque o nível de domínio de cada habilidade. A meta não é decorar menus, mas conseguir resolver tarefas reais com segurança.</p><div class="study-illustration">
+<h3>Escada de domínio das habilidades</h3>
+<p>A autoavaliação deve mostrar progresso: depender de ajuda, consultar a ficha, fazer sozinho e ensinar outra pessoa.</p>
+<svg aria-label="Escada de domínio: preciso de ajuda, faço com consulta, faço sozinho, explico para alguém" role="img" viewbox="0 0 760 260">
+<rect class="svg-red-fill" height="44" rx="12" width="135" x="80" y="185"></rect><text class="svg-label" text-anchor="middle" x="147" y="212">Preciso de ajuda</text>
+<rect class="svg-amber-fill" height="84" rx="12" width="135" x="230" y="145"></rect><text class="svg-label" text-anchor="middle" x="297" y="181">Faço com</text><text class="svg-label" text-anchor="middle" x="297" y="202">consulta</text>
+<rect class="svg-green-fill" height="124" rx="12" width="135" x="380" y="105"></rect><text class="svg-label" text-anchor="middle" x="447" y="160">Faço</text><text class="svg-label" text-anchor="middle" x="447" y="181">sozinho</text>
+<rect class="svg-blue-fill" height="164" rx="12" width="150" x="530" y="65"></rect><text class="svg-label" text-anchor="middle" x="605" y="135">Explico</text><text class="svg-label" text-anchor="middle" x="605" y="156">para alguém</text>
+<path class="svg-line" d="M130 55 C225 20 520 10 640 42"></path><text class="svg-small" text-anchor="middle" x="380" y="40">Quanto mais autonomia, menor a dependência de ajuda externa.</text>
+</svg>
+</div>
+<div class="tableWrap"><table><thead><tr><th>Habilidade</th><th>Preciso de ajuda</th><th>Faço com consulta</th><th>Faço sozinho</th><th>Explico para alguém</th></tr></thead><tbody><tr><td>Ligar, bloquear, desbloquear e reiniciar</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Usar toque, toque longo, rolagem e zoom</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Abrir apps, voltar e alternar entre recentes</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Conectar ao Wi‑Fi e identificar dados móveis</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Fazer chamada e salvar contato</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Instalar/remover app com segurança</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Tirar foto, encontrar na galeria e compartilhar</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Localizar arquivos e liberar espaço</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Verificar Conta Google e backup</td><td>□</td><td>□</td><td>□</td><td>□</td></tr><tr><td>Reconhecer golpes, links suspeitos e permissões perigosas</td><td>□</td><td>□</td><td>□</td><td>□</td></tr></tbody></table></div>
+<h3>Questões de revisão</h3><div class="exercise"><strong>1.</strong> Qual é a diferença entre Wi‑Fi e dados móveis?<div class="answer-line"></div><div class="answer-line"></div></div><div class="exercise"><strong>2.</strong> Por que não se deve compartilhar códigos recebidos por SMS ou WhatsApp?<div class="answer-line"></div><div class="answer-line"></div></div><div class="exercise"><strong>3.</strong> O que significa “permissão” de aplicativo?<div class="answer-line"></div><div class="answer-line"></div></div><div class="exercise"><strong>4.</strong> O que você faria se o celular estivesse muito lento?<div class="answer-line"></div><div class="answer-line"></div></div><div class="exercise"><strong>5.</strong> Por que é importante conhecer a Conta Google configurada no aparelho?<div class="answer-line"></div><div class="answer-line"></div></div>
+</div></section>
+<section class="page" id="glossario"><div class="page-content">
+<span class="badge">📖 Consulta rápida</span>
+<h2>Glossário essencial</h2>
+<div class="glossary"><div class="term"><strong>Android</strong> — sistema operacional do Google usado em smartphones e tablets.</div><div class="term"><strong>Aplicativo</strong> — programa instalado para executar uma função, como câmera, mensagens ou banco.</div><div class="term"><strong>Backup</strong> — cópia de segurança de dados importantes.</div><div class="term"><strong>Bluetooth</strong> — conexão de curto alcance para fones, caixas e relógios.</div><div class="term"><strong>Conta Google</strong> — conta, geralmente Gmail, usada para Play Store, backup e serviços do Google.</div><div class="term"><strong>Dados móveis</strong> — internet fornecida pela operadora do chip.</div><div class="term"><strong>Download</strong> — arquivo baixado da internet, e-mail ou mensagem.</div><div class="term"><strong>Gaveta de apps</strong> — lista completa de aplicativos instalados.</div><div class="term"><strong>Ícone</strong> — figura que representa um aplicativo ou função.</div><div class="term"><strong>Notificação</strong> — aviso exibido pelo sistema ou por apps.</div><div class="term"><strong>Permissão</strong> — autorização para app acessar câmera, microfone, localização, contatos ou arquivos.</div><div class="term"><strong>PIN</strong> — código numérico usado para desbloqueio ou segurança.</div><div class="term"><strong>Play Store</strong> — loja oficial de aplicativos Android.</div><div class="term"><strong>QR Code</strong> — código quadrado lido pela câmera para abrir informações, sites ou pagamentos.</div><div class="term"><strong>Sincronização</strong> — atualização de dados entre celular e nuvem.</div><div class="term"><strong>Widget</strong> — bloco na tela inicial que mostra informações ou atalhos.</div><div class="term"><strong>Wi‑Fi</strong> — rede sem fio usada para acessar a internet.</div><div class="term"><strong>Modo avião</strong> — recurso que desliga conexões sem fio do aparelho.</div></div>
+</div></section>
+<section class="page" id="fontes"><div class="page-content">
+<span class="badge">🔗 Apoio</span>
+<h2>Referências e observações de uso</h2>
+<p>Esta ficha foi organizada para fins educacionais a partir do conteúdo-base sobre operação de smartphone Android, com reestruturação em formato de estudo, revisão, prática guiada e autoavaliação.</p>
+<ul><li><a href="https://support.google.com/android/" rel="noopener" target="_blank">Central de Ajuda do Android</a></li><li><a href="https://support.google.com/accounts/" rel="noopener" target="_blank">Ajuda da Conta Google</a></li><li>Boas práticas de alfabetização digital, segurança em dispositivos móveis e ensino prático para iniciantes.</li></ul>
+<div class="footer">Ficha de estudo HTML — Android para iniciantes. Pode ser usada em aula, revisão, impressão ou estudo individual.</div>
+</div></section>
+</div>
+</div>
+</section>
+</main>
+<script>
+    (function() {
+      const stage = document.getElementById("viewerStage");
+      const book = document.getElementById("bookPages");
+      const pages = Array.from(book.querySelectorAll(".page"));
+      const sidebarLinks = Array.from(document.querySelectorAll("#sidebarNav a"));
+      const topLinks = Array.from(document.querySelectorAll(".topbar .nav a"));
+      const prevBtn = document.getElementById("prevPage");
+      const nextBtn = document.getElementById("nextPage");
+      const status = document.getElementById("viewerStatus");
+      const scalePreference = document.getElementById("scalePreference");
+      const scaleNote = document.getElementById("scaleNote");
+      if (!stage || pages.length === 0) return;
+
+      function isDesktop() { return window.matchMedia("(min-width:1081px)").matches; }
+      let activeIndex = 0;
+
+      function getIndexFromHash() {
+        const h = location.hash.slice(1);
+        if (!h) return 0;
+        const idx = pages.findIndex(p => p.id === h);
+        return idx >= 0 ? idx : 0;
+      }
+
+      function fitActivePage() {
+        if (!isDesktop()) {
+          stage.classList.remove("is-scaled", "mode-reading", "mode-fit");
+          return;
+        }
+        const page = pages[activeIndex];
+        const content = page.querySelector(":scope > .page-content");
+        if (!content) return;
+        const pref = scalePreference?.value || "reading";
+        stage.classList.toggle("mode-reading", pref === "reading");
+        stage.classList.toggle("mode-fit", pref === "fit");
+        content.classList.toggle("tight-mode", pref === "fit");
+
+        if (pref === "reading") {
+          content.style.transform = "none";
+          content.style.width = "auto";
+          stage.classList.remove("is-scaled");
+          if (scaleNote) scaleNote.textContent = "Modo leitura · rolagem ativa";
+          return;
+        }
+
+        content.style.transform = "scale(1)";
+        content.style.width = "100%";
+        const pad = 4;
+        const availW = page.clientWidth - pad;
+        const availH = page.clientHeight - pad;
+        const naturalW = content.scrollWidth;
+        const naturalH = content.scrollHeight;
+        if (!naturalW || !naturalH) return;
+        let scale = Math.min(1, availW / naturalW, availH / naturalH);
+        scale = Math.max(0.56, scale);
+        content.style.transform = `scale(${scale})`;
+        content.style.width = `${100 / scale}%`;
+        stage.classList.toggle("is-scaled", scale < 0.999);
+        if (scaleNote) scaleNote.textContent = `Modo reduzido · ${Math.round(scale * 100)}%`;
+      }
+
+      function syncActiveLinks() {
+        const id = pages[activeIndex]?.id;
+        sidebarLinks.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+      }
+
+      function updateStatus() {
+        if (status) status.textContent = `Página ${activeIndex + 1} de ${pages.length}`;
+        if (prevBtn) prevBtn.disabled = activeIndex === 0;
+        if (nextBtn) nextBtn.disabled = activeIndex === pages.length - 1;
+      }
+
+      function showPage(index, updateHash) {
+        activeIndex = Math.max(0, Math.min(pages.length - 1, index));
+        pages.forEach((p, i) => {
+          p.classList.toggle("active", i === activeIndex);
+          p.setAttribute("aria-hidden", i === activeIndex ? "false" : "true");
+        });
+        updateStatus();
+        syncActiveLinks();
+        fitActivePage();
+        if (updateHash) history.replaceState(null, "", "#" + pages[activeIndex].id);
+      }
+
+      function handleLinkClick(e) {
+        const href = e.currentTarget.getAttribute("href") || "";
+        if (!href.startsWith("#")) return;
+        const id = href.slice(1);
+        const idx = pages.findIndex(p => p.id === id);
+        if (idx < 0) return;
+        if (isDesktop()) {
+          e.preventDefault();
+          showPage(idx, true);
+        }
+      }
+
+      sidebarLinks.forEach(l => l.addEventListener("click", handleLinkClick));
+      topLinks.forEach(l => l.addEventListener("click", handleLinkClick));
+      if (prevBtn) prevBtn.addEventListener("click", () => showPage(activeIndex - 1, true));
+      if (nextBtn) nextBtn.addEventListener("click", () => showPage(activeIndex + 1, true));
+      if (scalePreference) scalePreference.addEventListener("change", () => showPage(activeIndex, false));
+      document.addEventListener("keydown", (e) => {
+        if (isDesktop()) {
+          if (e.key === "ArrowRight") showPage(activeIndex + 1, true);
+          if (e.key === "ArrowLeft") showPage(activeIndex - 1, true);
+        }
+      });
+      window.addEventListener("resize", () => {
+        if (!isDesktop()) stage.classList.remove("is-scaled", "mode-reading", "mode-fit");
+        else showPage(activeIndex, false);
+      });
+
+      const initial = getIndexFromHash();
+      if (isDesktop()) showPage(initial, false);
+      else {
+        activeIndex = initial;
+        updateStatus();
+        syncActiveLinks();
+        pages.forEach((p, i) => p.classList.toggle("active", i === activeIndex));
+      }
+    })();
+  </script>
+</body>
+</html>
